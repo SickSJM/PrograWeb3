@@ -47,7 +47,7 @@ public class CursoController {
 			int rpta = cService.insert(curso);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
-				return "tipodeusuario/tipodeusuario";
+				return "curso/curso";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
