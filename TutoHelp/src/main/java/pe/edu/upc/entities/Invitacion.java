@@ -42,7 +42,7 @@ public class Invitacion {
 	@Column(name = "Comentario", nullable = false)
 	private String Comentario;
 	
-	@Length (min = 1, max = 100, message = "La longitud del link es de 1 a 100")
+	@Length (min = 10, max = 100, message = "La longitud del link es de 10 a 100")
 	@Column(name = "LinkReunion", nullable = false, length = 100)
 	private String LinkReunion;
 	
