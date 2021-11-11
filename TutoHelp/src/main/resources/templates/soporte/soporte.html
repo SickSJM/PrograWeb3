@@ -197,30 +197,18 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Tipo de usuario</h1>
+					<h1 class="h3 mb-4 text-gray-800">Soporte</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${tipodeusuario}" th:remove="tag">
+					<div th:object="${soporte}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/tipodeusuarios/save}" th:object="${tipodeusuario}" method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Role: </label>
-							<div class="col-sm-6">
-								<select name="select" th:field="*{descripcion}" class="custom-select custom-select-sm">
-									<option value="ROLE_USER" selected>Usuario</option>
-									<option value="ROLE_ADMIN">Administrador</option>
-									<option value="ROLE_DOCENTE">Docente</option>
-									<option value="ROLE_ESTUDIANTE">Estudiante</option>
-								</select>
-
-							</div>
-						</div>
-						<div class="form-group row">
+					<form th:action="@{/soportes/save}" th:object="${soporte}" method="post">
+					    <div class="form-group row">
 							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
 								<select class="custom-select custom-select-sm"
@@ -231,9 +219,19 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Reporte:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{descripcion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/tipodeusuarios/list" class="btn btn-danger">Cancelar</a>
+								<a href="/soportes/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>

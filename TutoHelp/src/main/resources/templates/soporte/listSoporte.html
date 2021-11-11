@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
 
 <meta charset="utf-8">
@@ -50,15 +51,16 @@
 
 
 
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
+				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/categories/list}">Categorías</a>
+						<a class="collapse-item" th:href="@{/categories/list}">Categor&iacute;as</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -85,6 +87,7 @@
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
 				</div>
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -104,6 +107,7 @@
 				</div></li>
 
 
+
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
@@ -115,14 +119,14 @@
 							Categor&iacute;as</a>
 					</div>
 				</div>
-
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
+						<a class="collapse-item" th:href="@{/products/listarFind}">Buscar
 							Productos</a>
 					</div>
 				</div></li>
+
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -172,7 +176,6 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
-
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -181,8 +184,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="categories/index"
+									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -197,51 +200,34 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Tipo de usuario</h1>
+					<div class="col-sm-12">
+						<h1 class="h3 mb-4 text-gray-800">Soporte</h1>
 
-					<hr class="sidebar-divider">
-					<div th:object="${tipodeusuario}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
+
+						<a th:href="@{/soportes/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+
+						<hr class="sidebar-divider">
+
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr align="center">
+									<th scope="col">Id</th>
+									<th scope="col">Usuario</th>
+									<th scope="col">Reporte</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr align="center" th:each="r: ${listaSoportes}">
+									<td th:text="${r.id}"></td>
+									<td th:text="${r.user.username}"></td>
+									<td th:text="${r.descripcion}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p th:text="${mensaje}"></p>
 					</div>
-
-					<form th:action="@{/tipodeusuarios/save}" th:object="${tipodeusuario}" method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Role: </label>
-							<div class="col-sm-6">
-								<select name="select" th:field="*{descripcion}" class="custom-select custom-select-sm">
-									<option value="ROLE_USER" selected>Usuario</option>
-									<option value="ROLE_ADMIN">Administrador</option>
-									<option value="ROLE_DOCENTE">Docente</option>
-									<option value="ROLE_ESTUDIANTE">Estudiante</option>
-								</select>
-
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{user}">
-									<option th:each="u : ${listaUsuarios}" th:value="${u.id}"
-										th:utext="${u.username}" />
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/tipodeusuarios/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
-
-
-
 
 				</div>
 				<!-- /.container-fluid -->
@@ -253,7 +239,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 201902</span>
+						<span>Copyright &copy; Web 202102</span>
 					</div>
 				</div>
 			</footer>
@@ -284,7 +270,7 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual</div>
+					continuación si está listo para finalizar su sesión actual.</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"
