@@ -11,7 +11,7 @@ import pe.edu.upc.entity.Users;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
-	public Users findByUsername(String username);
+	public Users findByUsername(String Nickname);
 
 	@Query("select count(u.username) from Users u where u.username =:username")
 	public int buscarUsername(@Param("username") String nombre);

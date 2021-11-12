@@ -27,24 +27,33 @@ public class Users implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(length = 70, nullable = true)
-	private String name;
+	@Column(length = 20, nullable = true)
+	private String Nombre;
 
-	@Column(length = 70, nullable = true)
-	private String lastName;
+	@Column(length = 20, nullable = true)
+	private String Apellido;
 
-	@Column(length = 70)
-	@Email(message = "Ingresar un email valido.")
-	private String email;
+	@Column(nullable = true)
+	private String DNI;
 
-	@Column(length = 30, unique = true)
+	@Column(length = 20, nullable = true)
+	@Email(message = "Ingresar un correo valido.")
+	private String Correo;
+
+	@Column(nullable = true)
+	private String Telefono;
+
+	@Column(length = 20, nullable = true)
+	private String Direccion;
+
+	@Column(length = 10, unique = true)
 	private String username;
 
 	@Column(length = 200)
-	private String password;
+	private String Contraseña;
 
 	private Boolean enabled;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<Tipodeusuario> roles;
@@ -65,6 +74,54 @@ public class Users implements Serializable {
 		this.id = id;
 	}
 
+	public String getNombre() {
+		return Nombre;
+	}
+
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+
+	public String getApellido() {
+		return Apellido;
+	}
+
+	public void setApellido(String apellido) {
+		Apellido = apellido;
+	}
+
+	public String getDNI() {
+		return DNI;
+	}
+
+	public void setDNI(String dNI) {
+		DNI = dNI;
+	}
+
+	public String getCorreo() {
+		return Correo;
+	}
+
+	public void setCorreo(String correo) {
+		Correo = correo;
+	}
+
+	public String getTelefono() {
+		return Telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		Telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return Direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		Direccion = direccion;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -73,12 +130,12 @@ public class Users implements Serializable {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getContraseña() {
+		return Contraseña;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setContraseña(String contraseña) {
+		Contraseña = contraseña;
 	}
 
 	public Boolean getEnabled() {
@@ -89,28 +146,6 @@ public class Users implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 
 }

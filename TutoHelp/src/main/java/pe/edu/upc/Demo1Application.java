@@ -24,7 +24,7 @@ public class Demo1Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		String password = "web";
+		String password = "tutohelp";
 
 		for (int i = 0; i < 1; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);

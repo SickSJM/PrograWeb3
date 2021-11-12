@@ -38,8 +38,7 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/categories/index}">
+				class="sidebar-brand d-flex align-items-center justify-content-center">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -57,12 +56,6 @@
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/categories/list}">Categor&iacute;as</a>
-					</div>
-				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -84,48 +77,35 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
-					</div>
-				</div>
-
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
-					</div>
-				</div></li>
-
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Orden</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/customers/list}">Órdenes</a>
-					</div>
-				</div></li>
-
-
-
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/categories/listFind}">Buscar
-							Categor&iacute;as</a>
+						<a class="collapse-item" th:href="@{/consultas/new}">Consulta</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/products/listarFind}">Buscar
-							Productos</a>
+						<a class="collapse-item" th:href="@{/users/list}">Lista de Usuarios</a>
 					</div>
-				</div></li>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/tipodeusuarios/list}">Lista de Tipo de Usuario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/consultas/list}">Lista de Consultas</a>
+					</div>
+				</div>
+				
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/soportes/list}">Lista de Soporte</a>
+					</div>
+				</div>
+				</li>
 
 
 			<!-- Divider -->
@@ -201,7 +181,7 @@
 
 					<!-- Page Heading -->
 					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Soporte</h1>
+						<h1 class="h3 mb-4 text-gray-800">Soportes</h1>
 
 
 						<a th:href="@{/soportes/new/}" class="btn btn-danger btn-xs">Nuevo</a>

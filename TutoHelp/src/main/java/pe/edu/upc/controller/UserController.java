@@ -36,8 +36,8 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "usersecurity/user";
 		} else {
-			String bcryptPassword = passwordEncoder.encode(user.getPassword());
-			user.setPassword(bcryptPassword);
+			String bcryptPassword = passwordEncoder.encode(user.getContraseña());
+			user.setContraseña(bcryptPassword);
 			int rpta = uService.insert(user);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");

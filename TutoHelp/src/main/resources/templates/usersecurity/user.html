@@ -37,8 +37,7 @@
 
 			<!-- Sidebar - Brand -->
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/categories/index}">
+				class="sidebar-brand d-flex align-items-center justify-content-center">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -55,12 +54,12 @@
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/categories/list}">Categorías</a>
 					</div>
-				</div>
+				</div>-->
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -82,10 +81,35 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+						<a class="collapse-item" th:href="@{/consultas/new}">Consulta</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Lista de Usuarios</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/tipodeusuarios/list}">Lista de Tipo de Usuario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/consultas/list}">Lista de Consultas</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/soportes/list}">Lista de Soporte</a>
+					</div>
+				</div>
+				</li>
+				<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
@@ -128,7 +152,7 @@
 						<a class="collapse-item" th:href="@{/products/listFind}">Buscar
 							Productos</a>
 					</div>
-				</div></li>
+				</div>-->
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -223,42 +247,81 @@
 									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
 							</div>
 						</div>
+						
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{name}" class="form-control"
+								<input type="text" th:field="*{Nombre}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('name')}"
-									th:errors="*{name}"></small>
+									th:if="${#fields.hasErrors('Nombre')}"
+									th:errors="*{Nombre}"></small>
 							</div>
 						</div>
 						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Apellidos:
+							<label for="name" class="col-sm-2 col-form-label">Apellido:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{lastName}" class="form-control"
+								<input type="text" th:field="*{Apellido}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('lastName')}"
-									th:errors="*{lastName}"></small>
+									th:if="${#fields.hasErrors('Apellido')}"
+									th:errors="*{Apellido}"></small>
 							</div>
 						</div>
+						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Email:
+							<label for="name" class="col-sm-2 col-form-label">DNI:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" class="form-control"
+								<input type="text" th:field="*{DNI}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('email')}"
-									th:errors="*{email}"></small>
+									th:if="${#fields.hasErrors('DNI')}"
+									th:errors="*{DNI}"></small>
 							</div>
 						</div>
+						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Usuario:
+							<label for="name" class="col-sm-2 col-form-label">Correo:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Correo}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Correo')}"
+									th:errors="*{Correo}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Teléfono:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Telefono}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Telefono')}"
+									th:errors="*{Telefono}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Dirección:
+							</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{Direccion}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('Direccion')}"
+									th:errors="*{Direccion}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nickname:
 							</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{username}" class="form-control"
@@ -269,14 +332,14 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Password:
+							<label for="name" class="col-sm-2 col-form-label">Contraseña:
 							</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{password}" class="form-control"
+								<input type="password" th:field="*{Contraseña}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('password')}"
-									th:errors="*{password}"></small>
+									th:if="${#fields.hasErrors('Contraseña')}"
+									th:errors="*{Contraseña}"></small>
 							</div>
 						</div>
 						<div class="form-group row">
