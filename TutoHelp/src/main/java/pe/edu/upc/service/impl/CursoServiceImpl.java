@@ -6,22 +6,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upc.entity.Consulta;
-import pe.edu.upc.repository.IConsultaRepository;
-import pe.edu.upc.service.IConsultaService;
+import pe.edu.upc.entity.Curso;
+import pe.edu.upc.repository.ICursoRepository;
+import pe.edu.upc.service.ICursoService;
 
 @Service
-public class ConsultaServiceImpl implements IConsultaService {
+public class CursoServiceImpl implements ICursoService {
 	@Autowired
-	private IConsultaRepository rR;
+	private ICursoRepository rR;
 
 	@Override
-	public void insert(Consulta consul) {
-		rR.save(consul);
+	public void insert(Curso cur) {
+		rR.save(cur);
 	}
 
 	@Override
-	public List<Consulta> list() {
+	public List<Curso> list() {
 		// TODO Auto-generated method stub
 		return rR.findAll();
 	}
@@ -33,7 +33,7 @@ public class ConsultaServiceImpl implements IConsultaService {
 	}
 
 	@Override
-	public Optional<Consulta> listId(long id) {
+	public Optional<Curso> listId(long id) {
 		// TODO Auto-generated method stub
 		return rR.findById(id);
 	}

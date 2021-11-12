@@ -55,7 +55,12 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
+			</a> <!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/list}">Categor&iacute;as</a>
+					</div>
+				</div>-->
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -123,6 +128,51 @@
 					</div>
 				</div>
 				</li>
+			<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
+					</div>
+				</div>
+
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/list}">Clientes</a>
+					</div>
+				</div></li>
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Orden</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/customers/list}">Órdenes</a>
+					</div>
+				</div></li>
+
+
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Reporte</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/listFind}">Buscar
+							Categor&iacute;as</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/listarFind}">Buscar
+							Productos</a>
+					</div>
+				</div>-->
 
 
 			<!-- Divider -->
@@ -198,10 +248,10 @@
 
 					<!-- Page Heading -->
 					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Soportes</h1>
+						<h1 class="h3 mb-4 text-gray-800">Cursos</h1>
 
 
-						<a th:href="@{/soportes/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+						<a th:href="@{/cursos/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 						<hr class="sidebar-divider">
 
@@ -209,16 +259,23 @@
 							<thead class="thead-dark">
 								<tr align="center">
 									<th scope="col">Id</th>
-									<th scope="col">Usuario</th>
-									<th scope="col">Reporte</th>
+									<th scope="col">Nombre</th>
+									<th scope="col" class="text-center">Operacion</th>
+									<th scope="col" class="text-center">Operacion</th>
 
 								</tr>
 							</thead>
 							<tbody>
-								<tr align="center" th:each="r: ${listaSoportes}">
+								<tr align="center" th:each="r: ${listaCursos}">
 									<td th:text="${r.id}"></td>
-									<td th:text="${r.user.username}"></td>
-									<td th:text="${r.descripcion}"></td>
+									<td th:text="${r.nombre}"></td>
+									<td class="text-center"><a
+										th:href="@{/cursos/delete?id=}+${r.id}"><i
+											class="fa fa-trash" style="color: #cb3234;"></i> </a></td>
+
+									<td class="text-center"><a
+										th:href="@{'/cursos/update/'+${r.id}}"><i
+											class="fa fa-tools" style="color: #cb3234;"></i></a></td>
 								</tr>
 							</tbody>
 						</table>

@@ -65,7 +65,8 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/tipodeusuarios/new}">Tipos de Usuario</a>
+						<a class="collapse-item" th:href="@{/tipodeusuarios/new}">Tipos
+							de Usuario</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -83,25 +84,42 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Lista de Usuarios</a>
+						<a class="collapse-item" th:href="@{/cursos/new}">Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/tipodeusuarios/list}">Lista de Tipo de Usuario</a>
+						<a class="collapse-item" th:href="@{/users/list}">Lista de
+							Usuarios</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/consultas/list}">Lista de Consultas</a>
+						<a class="collapse-item" th:href="@{/tipodeusuarios/list}">Lista
+							de Tipo de Usuario</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/soportes/list}">Lista de Soporte</a>
+						<a class="collapse-item" th:href="@{/consultas/list}">Lista de
+							Consultas</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/soportes/list}">Lista de
+							Soporte</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/cursos/list}">Lista de
+							Cursos</a>
 					</div>
 				</div>
 				</li>
@@ -192,13 +210,21 @@
 								<tr align="center">
 									<th scope="col">Id</th>
 									<th scope="col">Usuario</th>
-
+									<th scope="col" class="text-center">Operacion</th>
+									<th scope="col" class="text-center">Operacion</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr align="center" th:each="u: ${listaUsuarios}">
 									<td th:text="${u.id}"></td>
 									<td th:text="${u.username}"></td>
+									<td class="text-center"><a
+										th:href="@{/users/delete?id=}+${u.id}"><i
+											class="fa fa-trash" style="color: #cb3234;"></i> </a></td>
+
+									<td class="text-center"><a
+										th:href="@{'/users/update/'+${u.id}}"><i
+											class="fa fa-tools" style="color: #cb3234;"></i></a></td>
 								</tr>
 							</tbody>
 						</table>

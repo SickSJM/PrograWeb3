@@ -16,66 +16,62 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pe.edu.upc.entity.Consulta;
-import pe.edu.upc.service.IConsultaService;
-import pe.edu.upc.service.IUserService;
+import pe.edu.upc.entity.Curso;
+import pe.edu.upc.service.ICursoService;
 
 @Controller
-@RequestMapping("/consultas")
-public class ConsultaController {
+@RequestMapping("/cursos")
+public class CursoController {
 
 	@Autowired
-	private IUserService uService;
-	@Autowired
-	private IConsultaService sService;
+	private ICursoService sService;
 
 	@GetMapping("/new")
-	public String newSoporte(Model model) {
-		model.addAttribute("consulta", new Consulta());
-		model.addAttribute("listaUsuarios", uService.list());
-		return "consulta/consulta";
+	public String newCurso(Model model) {
+		model.addAttribute("curso", new Curso());
+		return "curso/curso";
 	}
 
 	@PostMapping("/save")
-	public String saveConsulta(@Valid Consulta consulta, BindingResult result, Model model, SessionStatus status) throws Exception {
+	public String saveCurso(@Valid Curso curso, BindingResult result, Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			return "/consulta/consulta";
+			return "/curso/curso";
 		} else {
-			sService.insert(consulta);
+			sService.insert(curso);
 			model.addAttribute("mensaje", "Se guardó correctamente");
 			status.setComplete();
 		}
-		model.addAttribute("listaConsultas", sService.list());
+		model.addAttribute("listaCursos", sService.list());
 
-		return "/consulta/consulta";
+		return "/curso/curso";
 
 	}
 
 	@GetMapping("/list")
-	public String listConsultas(Model model) {
+	public String listCursos(Model model) {
 		try {
-			model.addAttribute("consulta", new Consulta());
-			model.addAttribute("listaConsultas", sService.list());
+			model.addAttribute("curso", new Curso());
+			model.addAttribute("listaCursos", sService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/consulta/listConsultas";
+		return "/curso/listCursos";
 	}
 	
 	@RequestMapping("/delete")
 	public String deleteConsulta(@RequestParam(value="id") Integer id, Model model) {
 		sService.delete(id);
-		return "redirect:/consultas/list";
+		return "redirect:/cursos/list";
 	}
 	@RequestMapping("/update/{id}")
 	public String goUpdate(@PathVariable int id,Model model, RedirectAttributes objRedir) {
-		Optional<Consulta> consul=sService.listId(id);
-		if(consul==null) {
+		Optional<Curso> cur=sService.listId(id);
+		if(cur==null) {
 			objRedir.addFlashAttribute("mensaje","ocurrio un error");
-			return "/consulta/consultaMOD";
+			return "/curso/curso";
 		}else {
-			model.addAttribute("consulta",consul);
-			return "/consulta/consultaMOD";
+			model.addAttribute("curso",cur);
+			return "/curso/curso";
 		}
 	}
 
