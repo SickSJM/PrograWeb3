@@ -53,13 +53,12 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
-				<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/categories/list}">Categorías</a>
-					</div>
-				</div>-->
+			</a> <!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+</div>
+</div>-->
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -82,7 +81,20 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detalleprofesores/new}">Detalle
+							profesor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/consultas/new}">Consulta</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/profesores/new}">Profesor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -91,6 +103,11 @@
 						<a class="collapse-item" th:href="@{/cursos/new}">Curso</a>
 					</div>
 				</div>
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="false"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Listas</span>
+			</a>
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -115,8 +132,22 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/profesores/list}">Lista
+							de Profesores</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/soportes/list}">Lista de
 							Soporte</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detalleprofesores/list}">Lista
+							detalle profesor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -125,9 +156,8 @@
 						<a class="collapse-item" th:href="@{/cursos/list}">Lista de
 							Cursos</a>
 					</div>
-				</div>
-				</li>
-				<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				</div></li>
+			<!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
@@ -171,13 +201,9 @@
 							Productos</a>
 					</div>
 				</div>-->
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
 			<!-- Sidebar Toggler (Sidebar) -->
-
-
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -265,7 +291,7 @@
 									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Nombre" class="col-sm-2 col-form-label">Nombre:
 							</label>
@@ -273,11 +299,10 @@
 								<input type="text" th:field="*{Nombre}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Nombre')}"
-									th:errors="*{Nombre}"></small>
+									th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Apellido" class="col-sm-2 col-form-label">Apellido:
 							</label>
@@ -289,19 +314,17 @@
 									th:errors="*{Apellido}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="DNI" class="col-sm-2 col-form-label">DNI:
-							</label>
+							<label for="DNI" class="col-sm-2 col-form-label">DNI: </label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{DNI}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('DNI')}"
-									th:errors="*{DNI}"></small>
+									th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Correo" class="col-sm-2 col-form-label">Correo:
 							</label>
@@ -309,11 +332,10 @@
 								<input type="text" th:field="*{Correo}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('Correo')}"
-									th:errors="*{Correo}"></small>
+									th:if="${#fields.hasErrors('Correo')}" th:errors="*{Correo}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Telefono" class="col-sm-2 col-form-label">Teléfono:
 							</label>
@@ -325,7 +347,7 @@
 									th:errors="*{Telefono}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Direccion" class="col-sm-2 col-form-label">Dirección:
 							</label>
@@ -337,7 +359,7 @@
 									th:errors="*{Direccion}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="Nickname" class="col-sm-2 col-form-label">Nickname:
 							</label>
@@ -353,7 +375,8 @@
 							<label for="Contraseña" class="col-sm-2 col-form-label">Contraseña:
 							</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{Contraseña}" class="form-control"
+								<input type="password" th:field="*{Contraseña}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Contraseña')}"
@@ -394,7 +417,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 201902</span>
+						<span>Copyright &copy; Web 202102</span>
 					</div>
 				</div>
 			</footer>

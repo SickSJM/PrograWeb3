@@ -53,7 +53,12 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a>
+			</a> <!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+</div>
+</div>-->
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -76,7 +81,20 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detalleprofesores/new}">Detalle
+							profesor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/consultas/new}">Consulta</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/profesores/new}">Profesor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -85,6 +103,11 @@
 						<a class="collapse-item" th:href="@{/cursos/new}">Curso</a>
 					</div>
 				</div>
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-target="#collapseTwo" aria-expanded="false"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Listas</span>
+			</a>
+
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -109,8 +132,22 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/profesores/list}">Lista
+							de Profesores</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/soportes/list}">Lista de
 							Soporte</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detalleprofesores/list}">Lista
+							detalle profesor</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -119,9 +156,8 @@
 						<a class="collapse-item" th:href="@{/cursos/list}">Lista de
 							Cursos</a>
 					</div>
-				</div>
-				</li>
-				<!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				</div></li>
+			<!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
@@ -165,13 +201,9 @@
 							Productos</a>
 					</div>
 				</div>-->
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
 			<!-- Sidebar Toggler (Sidebar) -->
-
-
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -249,8 +281,9 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/consultas/save}" th:object="${consulta}" method="post">
-					    <div class="form-group row">
+					<form th:action="@{/consultas/save}" th:object="${consulta}"
+						method="post">
+						<div class="form-group row">
 							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
 								<select class="custom-select custom-select-sm"
@@ -267,7 +300,8 @@
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('textoconsulta')}" th:errors="*{textoconsulta}"></small>
+									th:if="${#fields.hasErrors('textoconsulta')}"
+									th:errors="*{textoconsulta}"></small>
 							</div>
 						</div>
 						<div class="form-group row">

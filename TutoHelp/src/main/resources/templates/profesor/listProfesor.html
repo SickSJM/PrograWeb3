@@ -229,10 +229,10 @@ data-parent="#accordionSidebar">
 
 					<!-- Page Heading -->
 					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Tipos de Usuarios</h1>
+						<h1 class="h3 mb-4 text-gray-800">Profesor</h1>
 
 
-						<a th:href="@{/tipodeusuarios/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+						<a th:href="@{/profesores/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 						<hr class="sidebar-divider">
 
@@ -240,29 +240,30 @@ data-parent="#accordionSidebar">
 							<thead class="thead-dark">
 								<tr align="center">
 									<th scope="col">Id</th>
+									<th scope="col">Profesor ID</th>
 									<th scope="col">Nombre</th>
-									<th scope="col">Usuario</th>
-									<th scope="col">Tipo de Usuario</th>
+									<th scope="col">Apellido</th>
+									<th scope="col">Universidad</th>
+									<th scope="col">Curso</th>
 									<th scope="col">Operación</th>
 									<th scope="col">Operación</th>
-
 								</tr>
 							</thead>
 							<tbody>
-								<tr align="center" th:each="r: ${listaTipodeusuarios}">
+								<tr align="center" th:each="r: ${listaProfesores}">
 									<td th:text="${r.id}"></td>
-									<td th:text="${r.user.Nombre}"></td>
 									<td th:text="${r.user.username}"></td>
-									<td th:text="${r.descripcion}"></td>
-									<td><a th:href="@{/tipodeusuarios/delete?id=}+${r.id}"
+									<td th:text="${r.profesornombre}"></td>
+									<td th:text="${r.profesorapellido}"></td>
+									<td th:text="${r.universidad}"></td>
+									<td th:text="${r.curso}"></td>
+									<td><a th:href="@{/profesores/delete?id=}+${r.id}"
 										class="btn btn-dark">Eliminar</a></td>
-									<td><a th:href="@{'/tipodeusuarios/detalle/' + ${r.id}}"
+									<td><a th:href="@{'/profesores/detalle/' + ${r.id}}"
 										class="btn btn-dark">Actualizar</a></td>
-
 								</tr>
 							</tbody>
 						</table>
-
 
 						<p th:text="${mensaje}"></p>
 					</div>
