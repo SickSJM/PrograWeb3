@@ -103,6 +103,12 @@ data-parent="#accordionSidebar">
 						<a class="collapse-item" th:href="@{/cursos/new}">Curso</a>
 					</div>
 				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle Curso</a>
+					</div>
+				</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Listas</span>
@@ -148,6 +154,12 @@ data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/detalleprofesores/list}">Lista
 							detalle profesor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista Detalle Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -252,7 +264,7 @@ data-parent="#accordionSidebar">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Reporte:</label>
 							<div class="col-sm-6">
-								<input autofocus type="text" th:field="*{descripcion}"
+								<input autofocus type="text" style="height: 400px;font-size: 10pt; width: 800px;" th:field="*{descripcion}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

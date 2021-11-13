@@ -50,6 +50,7 @@
 
 
 
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
@@ -170,10 +171,6 @@ data-parent="#accordionSidebar">
 							Cursos</a>
 					</div>
 				</div></li>
-
-
-
-
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -244,10 +241,10 @@ data-parent="#accordionSidebar">
 
 					<!-- Page Heading -->
 					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Cursos</h1>
+						<h1 class="h3 mb-4 text-gray-800">Detalle de cursos</h1>
 
 
-						<a th:href="@{/cursos/new/}" class="btn btn-danger btn-xs">Nuevo</a>
+						<a th:href="@{/detallecursos/new/}" class="btn btn-danger btn-xs">Nuevo</a>
 
 						<hr class="sidebar-divider">
 
@@ -255,26 +252,27 @@ data-parent="#accordionSidebar">
 							<thead class="thead-dark">
 								<tr align="center">
 									<th scope="col">Id</th>
-									<th scope="col">Nombre</th>
-									<th scope="col" class="text-center">Operacion</th>
-									<th scope="col" class="text-center">Operacion</th>
+									<th scope="col">Curso</th>
+									<th scope="col">Usuario</th>
+									<th scope="col">Operación</th>
+									<th scope="col">Operación</th>
 
 								</tr>
 							</thead>
 							<tbody>
-								<tr align="center" th:each="r: ${listaCursos}">
+								<tr align="center" th:each="r: ${listaDetallecursos}">
 									<td th:text="${r.id}"></td>
-									<td th:text="${r.nombre}"></td>
-									<td class="text-center"><a
-										th:href="@{/cursos/delete?id=}+${r.id}"><i
-											class="fa fa-trash" style="color: #cb3234;"></i> </a></td>
+									<td th:text="${r.curso.nombre}"></td>
+									<td th:text="${r.user.username}"></td>
+									<td><a th:href="@{/detallecursos/delete?id=}+${r.id}"
+										class="btn btn-dark">Eliminar</a></td>
+									<td><a th:href="@{'/detallecursos/detalle/' + ${r.id}}"
+										class="btn btn-dark">Actualizar</a></td>	
 
-									<td class="text-center"><a
-										th:href="@{'/cursos/update/'+${r.id}}"><i
-											class="fa fa-tools" style="color: #cb3234;"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
+
 
 						<p th:text="${mensaje}"></p>
 					</div>

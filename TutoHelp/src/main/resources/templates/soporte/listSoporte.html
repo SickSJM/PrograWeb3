@@ -105,6 +105,12 @@ data-parent="#accordionSidebar">
 						<a class="collapse-item" th:href="@{/cursos/new}">Curso</a>
 					</div>
 				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle Curso</a>
+					</div>
+				</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Listas</span>
@@ -150,6 +156,12 @@ data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/detalleprofesores/list}">Lista
 							detalle profesor</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista Detalle Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -229,7 +241,7 @@ data-parent="#accordionSidebar">
 
 					<!-- Page Heading -->
 					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Soportes</h1>
+						<h1 class="h3 mb-4 text-gray-800">Soporte</h1>
 
 
 						<a th:href="@{/soportes/new/}" class="btn btn-danger btn-xs">Nuevo</a>
