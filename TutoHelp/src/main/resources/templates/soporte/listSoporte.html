@@ -211,6 +211,8 @@
 									<th scope="col">Id</th>
 									<th scope="col">Usuario</th>
 									<th scope="col">Reporte</th>
+									<th scope="col">Operación</th>
+									<th scope="col">Operación</th>
 
 								</tr>
 							</thead>
@@ -219,9 +221,14 @@
 									<td th:text="${r.id}"></td>
 									<td th:text="${r.user.username}"></td>
 									<td th:text="${r.descripcion}"></td>
+									<td><a th:href="@{/soportes/delete?id=}+${r.id}"
+										class="btn btn-dark">Eliminar</a></td>
+									<td><a th:href="@{'/soportes/detalle/' + ${r.id}}"
+										class="btn btn-dark">Actualizar</a></td>
 								</tr>
 							</tbody>
 						</table>
+
 
 						<p th:text="${mensaje}"></p>
 					</div>
