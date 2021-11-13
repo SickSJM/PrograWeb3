@@ -53,12 +53,7 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a> <!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
-</div>
-</div>-->
+			</a> 
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -106,7 +101,26 @@ data-parent="#accordionSidebar">
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle Curso</a>
+						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle
+							Curso</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/comentarios/new}">Comentario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/invitaciones/new}">Invitacion</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pruebas/new}">Pruebas Compartidas</a>
 					</div>
 				</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -159,7 +173,8 @@ data-parent="#accordionSidebar">
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista Detalle Curso</a>
+						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista
+							Detalle Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -168,7 +183,29 @@ data-parent="#accordionSidebar">
 						<a class="collapse-item" th:href="@{/cursos/list}">Lista de
 							Cursos</a>
 					</div>
-				</div></li>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/comentarios/list}">Lista de
+							Comentario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/invitaciones/list}">Lista de
+							Invitaciones</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pruebas/list}">Lista de
+							Pruebas</a>
+					</div>
+				</div>
+				</li>
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -251,17 +288,8 @@ data-parent="#accordionSidebar">
 
 					<form th:action="@{/profesores/save}" th:object="${profesor}"
 						method="post">
-						<div class="form-group row">
-							<label for="color" class="col-sm-2 col-form-label">Profesor
-								ID</label>
-							<div class="col-sm-6">
-								<select class="custom-select custom-select-sm"
-									th:field="*{user}">
-									<option th:each="u : ${listaUsuarios}" th:value="${u.id}"
-										th:utext="${u.username}" />
-								</select>
-							</div>
-						</div>
+						
+						
 						<div class="form-group row">
 							<label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
 							<div class="col-sm-6">

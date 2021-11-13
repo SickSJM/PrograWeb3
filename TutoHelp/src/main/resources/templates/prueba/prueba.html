@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
 
 <meta charset="utf-8">
@@ -47,7 +46,6 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
-
 
 
 
@@ -253,6 +251,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -261,8 +260,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -277,43 +276,74 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div class="col-sm-12">
-						<h1 class="h3 mb-4 text-gray-800">Profesor</h1>
+					<h1 class="h3 mb-4 text-gray-800">Pruebas Compartidas</h1>
 
-
-						<a th:href="@{/profesores/new/}" class="btn btn-danger btn-xs">Nuevo</a>
-
-						<hr class="sidebar-divider">
-
-						<table class="table table-striped">
-							<thead class="thead-dark">
-								<tr align="center">
-									<th scope="col">Id</th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Apellido</th>
-									<th scope="col">Universidad</th>
-									<th scope="col">Curso</th>
-									<th scope="col">Operación</th>
-									<th scope="col">Operación</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr align="center" th:each="r: ${listaProfesores}">
-									<td th:text="${r.id}"></td>
-									<td th:text="${r.profesornombre}"></td>
-									<td th:text="${r.profesorapellido}"></td>
-									<td th:text="${r.universidad}"></td>
-									<td th:text="${r.curso}"></td>
-									<td><a th:href="@{/profesores/delete?id=}+${r.id}"
-										class="btn btn-dark">Eliminar</a></td>
-									<td><a th:href="@{'/profesores/detalle/' + ${r.id}}"
-										class="btn btn-dark">Actualizar</a></td>
-								</tr>
-							</tbody>
-						</table>
-
-						<p th:text="${mensaje}"></p>
+					<hr class="sidebar-divider">
+					<div th:object="${prueba}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
 					</div>
+
+					<form th:action="@{/pruebas/save}" th:object="${prueba}"
+						method="post">
+						<div class="form-group row">
+							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{user}">
+									<option th:each="u : ${listaUsuarios}" th:value="${u.id}"
+										th:utext="${u.username}" />
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{NombreArchivo}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('NombreArchivo')}"
+									th:errors="*{NombreArchivo}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Descripción:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" style="height: 400px;font-size: 10pt; width: 800px;" th:field="*{DecripcionArchivo}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('DecripcionArchivo')}"
+									th:errors="*{DecripcionArchivo}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">URL:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{url}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('url')}"
+									th:errors="*{url}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/pruebas/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+					</form>
+
+
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -325,7 +355,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 202102</span>
+						<span>Copyright &copy; Web 201902</span>
 					</div>
 				</div>
 			</footer>
@@ -356,7 +386,7 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"

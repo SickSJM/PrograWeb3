@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Detalleprofesor;
 import pe.edu.upc.service.IDetalleprofesorService;
+import pe.edu.upc.service.IProfesorService;
 import pe.edu.upc.service.IUserService;
 
 @Controller
@@ -27,12 +28,15 @@ public class DetalleprofesorController {
 	@Autowired
 	private IUserService uService;
 	@Autowired
+	private IProfesorService pService;
+	@Autowired
 	private IDetalleprofesorService sService;
 
 	@GetMapping("/new")
 	public String newDetalleprofesor(Model model) {
 		model.addAttribute("detalleprofesor", new Detalleprofesor());
 		model.addAttribute("listaUsuarios", uService.list());
+		model.addAttribute("listaProfesores", pService.list());
 		return "detalleprofesor/detalleprofesor";
 	}
 
@@ -82,10 +86,11 @@ public class DetalleprofesorController {
 	public String detailsPrf(@PathVariable(value = "id") int id, Model model) {
 		try {
 			model.addAttribute("listaUsuarios", uService.list());
+			model.addAttribute("listaProfesores", pService.list());
 			Optional<Detalleprofesor> detalleprofesor = sService.listarId(id);
 			if (!detalleprofesor.isPresent()) {
-				model.addAttribute("info", "Usuario no existe");
-				return "redirect:/soportes/list";
+				model.addAttribute("info", "DetalleProfesor no existe");
+				return "redirect:/detalleprofesores/list";
 			} else {
 				
 				model.addAttribute("detalleprofesor", detalleprofesor.get());

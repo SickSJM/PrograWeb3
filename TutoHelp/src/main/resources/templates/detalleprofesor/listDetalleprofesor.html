@@ -55,12 +55,7 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a> <!--<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
-</div>
-</div>-->
+			</a> 
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -108,7 +103,26 @@ data-parent="#accordionSidebar">
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle Curso</a>
+						<a class="collapse-item" th:href="@{/detallecursos/new}">Detalle
+							Curso</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/comentarios/new}">Comentario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/invitaciones/new}">Invitacion</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pruebas/new}">Pruebas Compartidas</a>
 					</div>
 				</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -161,7 +175,8 @@ data-parent="#accordionSidebar">
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista Detalle Curso</a>
+						<a class="collapse-item" th:href="@{/detallecursos/list}">Lista
+							Detalle Curso</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -170,7 +185,29 @@ data-parent="#accordionSidebar">
 						<a class="collapse-item" th:href="@{/cursos/list}">Lista de
 							Cursos</a>
 					</div>
-				</div></li>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/comentarios/list}">Lista de
+							Comentario</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/invitaciones/list}">Lista de
+							Invitaciones</a>
+					</div>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/pruebas/list}">Lista de
+							Pruebas</a>
+					</div>
+				</div>
+				</li>
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -253,6 +290,7 @@ data-parent="#accordionSidebar">
 							<thead class="thead-dark">
 								<tr align="center">
 									<th scope="col">ID</th>
+									<th scope="col">Profesor</th>
 									<th scope="col">Usuario</th>
 									<th scope="col">Calificacion</th>
 									<th scope="col">Comentario</th>
@@ -263,6 +301,7 @@ data-parent="#accordionSidebar">
 							<tbody>
 								<tr align="center" th:each="r: ${listaDetalleprofesores}">
 									<td th:text="${r.id}"></td>
+									<td th:text="${r.profesor.profesornombre}"></td>
 									<td th:text="${r.user.username}"></td>
 									<td th:text="${r.calificacion}"></td>
 									<td th:text="${r.comentario}"></td>

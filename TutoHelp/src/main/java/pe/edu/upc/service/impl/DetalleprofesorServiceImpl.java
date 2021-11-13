@@ -26,6 +26,7 @@ public class DetalleprofesorServiceImpl implements IDetalleprofesorService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<Detalleprofesor> list() {
 		// TODO Auto-generated method stub
 		return rR.findAll();

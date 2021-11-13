@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -19,6 +17,17 @@ public class Profesor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	@Column(name="profesornombre",nullable = false,length = 15)
 	private String profesornombre;
 
@@ -57,33 +66,12 @@ public class Profesor {
 	private String curso;
 
 	public String getCurso() {
-		return universidad;
+		return curso;
 	}
 
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private Users user;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	
-
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
-	}
 
 }
