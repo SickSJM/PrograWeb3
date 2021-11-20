@@ -1,7 +1,5 @@
 package pe.edu.upc.controller;
 
-import java.util.Map;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,92 +8,59 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Invitacion;
-import pe.edu.upc.service.IInvitacionService;
-import pe.edu.upc.service.IUserService;
+import pe.edu.upc.entities.Invitacion;
+import pe.edu.upc.serviceinterface.IUsuarioService;
+import pe.edu.upc.serviceinterface.IInvitacionService;
 
 @Controller
 @RequestMapping("/invitaciones")
 public class InvitacionController {
-
 	@Autowired
-	private IUserService uService;
+	private IInvitacionService pService;
 	@Autowired
-	private IInvitacionService sService;
+	private IUsuarioService cService;
 
-	@GetMapping("/new")
+
+	@GetMapping("/nuevo")
 	public String newInvitacion(Model model) {
 		model.addAttribute("invitacion", new Invitacion());
-		model.addAttribute("listaUsuarios", uService.list());
+		model.addAttribute("listaUsuarios", cService.list());
 		return "invitacion/invitacion";
-	}
-
-	@PostMapping("/save")
-	public String saveInvitacion(@Valid Invitacion invitacion, BindingResult result, Model model, SessionStatus status) throws Exception {
-		if (result.hasErrors()) {
-			return "/invitacion/invitacion";
-		} else {
-			model.addAttribute("listaUsuarios", uService.list());
-			sService.insert(invitacion);
-			model.addAttribute("mensaje", "Se guardó correctamente");
-			status.setComplete();
-		}
-		model.addAttribute("listaInvitaciones", sService.list());
-
-		return "/invitacion/invitacion";
-
 	}
 
 	@GetMapping("/list")
 	public String listInvitaciones(Model model) {
 		try {
 			model.addAttribute("invitacion", new Invitacion());
-			model.addAttribute("listaInvitaciones", sService.list());
+			model.addAttribute("listaInvitaciones", pService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/invitacion/listInvitaciones";
-	}
-	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
-		try {
-			if (id != null && id > 0) {
-				sService.delete(id);
-				model.put("mensaje", "Se eliminó correctamente");
-
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			model.put("mensaje", "No se puede eliminar la invitacion");
-		}
-		model.put("listaInvitaciones", sService.list());
-
 		return "invitacion/listInvitaciones";
 	}
-	@GetMapping("/detalle/{id}")
-	public String detailsInvitacion(@PathVariable(value = "id") int id, Model model) {
-		try {
-			model.addAttribute("listaInvitaciones", uService.list());
-			Optional<Invitacion> invitacion = sService.listarId(id);
-			if (!invitacion.isPresent()) {
-				model.addAttribute("info", "Invitacion no existe");
-				return "redirect:/invitaciones/list";
-			} else {
-				
-				model.addAttribute("invitacion", invitacion.get());
-			}
 
-		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
+	@PostMapping("/save")
+	public String saveMarca(@Valid Invitacion invitacion, BindingResult binRes, Model model,SessionStatus status)
+			throws Exception {
+		if (binRes.hasErrors()) {
+			model.addAttribute("listaUsuarios", cService.list());
+			return "invitacion/invitacion";
+		} else {
+			int rpta = pService.insert(invitacion);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "invitacion/invitacion";
+			} else {
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
+			}
 		}
-		return "/invitacion/update";
+		model.addAttribute("invitacion", new Invitacion());
+		return "redirect:/invitaciones/list";
 	}
 
 }

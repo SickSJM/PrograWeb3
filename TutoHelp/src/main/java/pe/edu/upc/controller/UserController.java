@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class UserController {
 	
 	@Autowired
 	private IUserService uService;
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newUser(Model model) {
 		model.addAttribute("user", new Users());
@@ -56,7 +57,7 @@ public class UserController {
 
 		return "usersecurity/listUser";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listUser(Model model) {
 		try {

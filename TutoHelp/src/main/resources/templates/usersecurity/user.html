@@ -53,7 +53,7 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
-			</a> 
+			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -120,7 +120,8 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/pruebas/new}">Pruebas Compartidas</a>
+						<a class="collapse-item" th:href="@{/pruebas/new}">Pruebas
+							Compartidas</a>
 					</div>
 				</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -187,15 +188,15 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/comentarios/list}">Lista de
-							Comentario</a>
+						<a class="collapse-item" th:href="@{/comentarios/list}">Lista
+							de Comentario</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/invitaciones/list}">Lista de
-							Invitaciones</a>
+						<a class="collapse-item" th:href="@{/invitaciones/list}">Lista
+							de Invitaciones</a>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -204,8 +205,7 @@
 						<a class="collapse-item" th:href="@{/pruebas/list}">Lista de
 							Pruebas</a>
 					</div>
-				</div>
-				</li>
+				</div></li>
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -297,7 +297,7 @@
 							</div>
 						</div>
 
-						<div class="form-group row">
+						<!--<div class="form-group row">
 							<label for="Nombre" class="col-sm-2 col-form-label">Nombre:
 							</label>
 							<div class="col-sm-6">
@@ -306,8 +306,14 @@
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}"></small>
 							</div>
+						</div>-->
+						<div class="form-group row">
+							<label for="Nombre">Nombre:</label> <input type="text" required
+								th:field="*{Nombre}" class="form-control" id="dni"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Nombre')}"
+								th:errors="*{Nombre}"></div>
 						</div>
-
 						<div class="form-group row">
 							<label for="Apellido" class="col-sm-2 col-form-label">Apellido:
 							</label>
