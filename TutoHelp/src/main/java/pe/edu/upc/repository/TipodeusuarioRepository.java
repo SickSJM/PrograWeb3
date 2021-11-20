@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import pe.edu.upc.entity.Tipodeusuario;
+import pe.edu.upc.entities.Tipodeusuario;
 
 @Repository
 public interface TipodeusuarioRepository extends JpaRepository<Tipodeusuario, Long> {

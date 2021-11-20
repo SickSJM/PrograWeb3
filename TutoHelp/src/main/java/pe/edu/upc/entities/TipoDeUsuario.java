@@ -1,49 +1,56 @@
 package pe.edu.upc.entities;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-//import javax.validation.constraints.Pattern;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "TipoDeUsuario")
-public class TipoDeUsuario {
+@Table(name = "tipodeusuarios", uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "descripcion" }) })
+public class Tipodeusuario implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTipoDeUsuario;
+	private Long id;
 
-	@Column(name = "descripcionTipoDeUsuario", nullable = false, length = 10)
-	private String descripcionTipoDeUsuario;
+	private String descripcion;
 
-	public TipoDeUsuario(int idTipoDeUsuario, String descripcionTipoDeUsuario) {
-		super();
-		this.idTipoDeUsuario = idTipoDeUsuario;
-		this.descripcionTipoDeUsuario = descripcionTipoDeUsuario;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public TipoDeUsuario() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
-	public int getIdTipoDeUsuario() {
-		return idTipoDeUsuario;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private Usuario user;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTipoDeUsuario(int idTipoDeUsuario) {
-		this.idTipoDeUsuario = idTipoDeUsuario;
-	}
-
-	public String getDescripcionTipoDeUsuario() {
-		return descripcionTipoDeUsuario;
-	}
-
-	public void setDescripcionTipoDeUsuario(String descripcionTipoDeUsuario) {
-		this.descripcionTipoDeUsuario = descripcionTipoDeUsuario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+
 }

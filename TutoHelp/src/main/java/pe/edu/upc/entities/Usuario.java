@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -20,10 +18,6 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int UsuarioID;
-
-	@ManyToOne
-	@JoinColumn(name = "idTipoDeUsuario", nullable = false)
-	private TipoDeUsuario tipousuario;
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre de usuario no puede contener caracteres especiales")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre de usuario no puede contener un número")
@@ -67,11 +61,10 @@ public class Usuario {
 	@Column(name = "ContrasenaUsuario", nullable = false, length = 15)
 	private String ContrasenaUsuario;
 
-	public Usuario(int usuarioID, TipoDeUsuario tipousuario,String nombreUsuario,String apellidoUsuario,String dNIUsuario,String correoUsuario,
+	public Usuario(int usuarioID,String nombreUsuario,String apellidoUsuario,String dNIUsuario,String correoUsuario,
 			String telefonoUsuario,String direccionUsuario,String nicknameUsuario,String contrasenaUsuario) {
 		super();
 		UsuarioID = usuarioID;
-		this.tipousuario = tipousuario;
 		NombreUsuario = nombreUsuario;
 		ApellidoUsuario = apellidoUsuario;
 		DNIUsuario = dNIUsuario;
@@ -95,13 +88,6 @@ public class Usuario {
 		UsuarioID = usuarioID;
 	}
 
-	public TipoDeUsuario getTipousuario() {
-		return tipousuario;
-	}
-
-	public void setTipousuario(TipoDeUsuario tipousuario) {
-		this.tipousuario = tipousuario;
-	}
 
 	public String getNombreUsuario() {
 		return NombreUsuario;

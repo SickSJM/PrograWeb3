@@ -26,19 +26,31 @@
 
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Tipo de Usuario</h3>
-				<a th:href="@{/tipodeusuarios/nuevo}" class="btn btn-warning">Nuevo</a>
+				<a th:href="@{/tipodeusuarios/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Usuario</th>
 						<th scope="col" class="text-center">Tipo de Usuario</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaTipoDeUsuario}">
-						<td class="text-center" th:text="${cat.idTipoDeUsuario}"></td>
-						<td class="text-center" th:text="${cat.descripcionTipoDeUsuario}"></td>
+					<tr th:each="cat : ${listaTipodeusuarios}">
+						<td class="text-center" th:text="${cat.id}"></td>
+						<td class="text-center" th:text="${cat.user.NombreUsuario}"></td>
+						<td class="text-center" th:text="${cat.user.NicknameUsuario}"></td>
+						<td class="text-center" th:text="${cat.descripcion}"></td>
+						<td class="text-center">
+						<a th:href="@{/tipodeusuarios/delete?id=}+${cat.id}" ><i class="fa fa-trash"
+					    style="color: #cb3234;"></i></a></td>
+					    <td class="text-center">
+						<a th:href="@{'/tipodeusuarios/update/'+${cat.id}}" ><i class="fa fa-pencil"
+					     style="color: #cb3234;"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

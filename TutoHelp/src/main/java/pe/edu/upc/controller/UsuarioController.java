@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Usuario;
-import pe.edu.upc.serviceinterface.ITipoDeUsuarioService;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
@@ -21,14 +20,12 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 public class UsuarioController {
 	@Autowired
 	private IUsuarioService pService;
-	@Autowired
-	private ITipoDeUsuarioService cService;
+
 
 
 	@GetMapping("/nuevo")
 	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
-		model.addAttribute("listaTipoDeUsuarios", cService.list());
 		return "usuario/usuario";
 	}
 
@@ -47,7 +44,6 @@ public class UsuarioController {
 	public String saveMarca(@Valid Usuario usuario, BindingResult binRes, Model model,SessionStatus status)
 			throws Exception {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listaTipoDeUsuarios", cService.list());
 			return "usuario/usuario";
 		} else {
 			int rpta = pService.insert(usuario);

@@ -32,7 +32,6 @@
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Tipo</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Apellido</th>
 						<th scope="col" class="text-center">DNI</th>
@@ -46,7 +45,6 @@
 				<tbody>
 					<tr th:each="p: ${listaUsuarios}">
 						<td class="text-center" th:text="${p.UsuarioID}"></td>
-						<td class="text-center" th:text="${p.tipousuario.descripcionTipoDeUsuario}"></td>
 						<td class="text-center" th:text="${p.NombreUsuario}"></td>
 						<td class="text-center" th:text="${p.ApellidoUsuario}"></td>
 						<td class="text-center" th:text="${p.DNIUsuario}"></td>
