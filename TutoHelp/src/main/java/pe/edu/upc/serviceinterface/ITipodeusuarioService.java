@@ -6,7 +6,7 @@ import java.util.Optional;
 import pe.edu.upc.entities.Tipodeusuario;
 
 public interface ITipodeusuarioService {
-	public Integer insert(Tipodeusuario role);
+	public void insert(Tipodeusuario role);
 	public void delete(long idrole);
 	Optional<Tipodeusuario> listarId(long idrole);
 /*
