@@ -4,6 +4,7 @@ package pe.edu.upc.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,8 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private IUsuarioService pService;
 
@@ -46,6 +49,8 @@ public class UsuarioController {
 		if (binRes.hasErrors()) {
 			return "usuario/usuario";
 		} else {
+			String bcryptPassword = passwordEncoder.encode(usuario.getContrasenaUsuario());
+			usuario.setContrasenaUsuario(bcryptPassword);
 			int rpta = pService.insert(usuario);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");

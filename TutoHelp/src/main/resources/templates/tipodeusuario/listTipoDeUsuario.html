@@ -43,7 +43,7 @@
 					<tr th:each="cat : ${listaTipodeusuarios}">
 						<td class="text-center" th:text="${cat.id}"></td>
 						<td class="text-center" th:text="${cat.user.NombreUsuario}"></td>
-						<td class="text-center" th:text="${cat.user.NicknameUsuario}"></td>
+						<td class="text-center" th:text="${cat.user.username}"></td>
 						<td class="text-center" th:text="${cat.descripcion}"></td>
 						<td class="text-center">
 						<a th:href="@{/tipodeusuarios/delete?id=}+${cat.id}" ><i class="fa fa-trash"

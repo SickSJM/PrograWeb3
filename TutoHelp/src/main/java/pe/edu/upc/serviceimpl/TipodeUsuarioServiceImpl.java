@@ -25,6 +25,7 @@ public class TipodeUsuarioServiceImpl implements ITipodeusuarioService {
 		}
 		return rpta;
 	}
+	
 
 	@Override
 	@Transactional

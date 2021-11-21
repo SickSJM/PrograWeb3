@@ -1,10 +1,17 @@
 package pe.edu.upc.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -12,9 +19,12 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 
+
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int UsuarioID;
@@ -54,15 +64,24 @@ public class Usuario {
 	private String DireccionUsuario;
 	
 	@Length (min = 1, max = 10, message = "La longitud del nickname es de 1 a 10")
-	@Column(name = "NicknameUsuario", nullable = false, length = 10)
-	private String NicknameUsuario;
+	@Column(name = "username", nullable = false, length = 10)
+	private String username;
 	
-	@Length (min = 3, max = 15, message = "La longitud de la contraseña es de 3 a 15")
-	@Column(name = "ContrasenaUsuario", nullable = false, length = 15)
+//	@Length (min = 3, max = 200, message = "La longitud de la contraseña es de 3 a 15")
+	@Column(name = "ContrasenaUsuario", nullable = false, length = 200)
 	private String ContrasenaUsuario;
+	
+	private Boolean enabled;
 
-	public Usuario(int usuarioID,String nombreUsuario,String apellidoUsuario,String dNIUsuario,String correoUsuario,
-			String telefonoUsuario,String direccionUsuario,String nicknameUsuario,String contrasenaUsuario) {
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<Tipodeusuario> roles;
+	
+	
+
+	public Usuario(int usuarioID,String nombreUsuario,String apellidoUsuario,String dNIUsuario,String correoUsuario,String telefonoUsuario,
+			String direccionUsuario,String username,String contrasenaUsuario,
+			Boolean enabled, List<Tipodeusuario> roles) {
 		super();
 		UsuarioID = usuarioID;
 		NombreUsuario = nombreUsuario;
@@ -71,8 +90,10 @@ public class Usuario {
 		CorreoUsuario = correoUsuario;
 		TelefonoUsuario = telefonoUsuario;
 		DireccionUsuario = direccionUsuario;
-		NicknameUsuario = nicknameUsuario;
+		this.username = username;
 		ContrasenaUsuario = contrasenaUsuario;
+		this.enabled = enabled;
+		this.roles = roles;
 	}
 
 	public Usuario() {
@@ -137,12 +158,12 @@ public class Usuario {
 		DireccionUsuario = direccionUsuario;
 	}
 
-	public String getNicknameUsuario() {
-		return NicknameUsuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNicknameUsuario(String nicknameUsuario) {
-		NicknameUsuario = nicknameUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getContrasenaUsuario() {
@@ -151,6 +172,22 @@ public class Usuario {
 
 	public void setContrasenaUsuario(String contrasenaUsuario) {
 		ContrasenaUsuario = contrasenaUsuario;
+	}
+
+	public List<Tipodeusuario> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Tipodeusuario> roles) {
+		this.roles = roles;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	
