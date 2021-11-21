@@ -46,15 +46,10 @@ public class TipoDeUsuarioController {
 		if (result.hasErrors()) {
 			return "/tipodeusuario/tipodeusuario";
 		} else {
-			int rpta = rService.insert(tipodeusuario);
-			if (rpta > 0) {
+			    rService.insert(tipodeusuario);
 				model.addAttribute("listaUsuarios", uService.list());
-				model.addAttribute("mensaje", "Ya existe");
-				return "/tipodeusuario/tipodeusuario";
-			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
-			}
 		}
 		model.addAttribute("listaTipodeusuarios", rService.list());
 
