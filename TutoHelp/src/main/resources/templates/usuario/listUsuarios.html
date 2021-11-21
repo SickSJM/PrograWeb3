@@ -39,6 +39,8 @@
 						<th scope="col" class="text-center">Telefono</th>
 						<th scope="col" class="text-center">Dirección</th>
 						<th scope="col" class="text-center">Nickname</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,15 +53,21 @@
 						<td class="text-center" th:text="${p.TelefonoUsuario}"></td>
 						<td class="text-center" th:text="${p.DireccionUsuario}"></td>
 						<td class="text-center" th:text="${p.username}"></td>
-					
+						<td class="text-center"><a
+							th:href="@{/usuarios/delete?id=}+${p.UsuarioID}"><i
+								class="fa fa-trash" style="color: #cb3234;"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/usuarios/update/'+${p.UsuarioID}}"><i
+								class="fa fa-pencil" style="color: #cb3234;"></i></a></td>
+
 					</tr>
 				</tbody>
 			</table>
 			<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
-		</div>
-		
+
 
 	</div>
 

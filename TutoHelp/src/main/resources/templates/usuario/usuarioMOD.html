@@ -27,7 +27,7 @@
 		<div class="content container row col-12">
 
 			<div class="col-6 frm-registro">
-				<form th:action="@{/usuarios/save}" method="post" class="row"
+				<form th:action="@{/usuarios/save2}" method="post" class="row"
 					th:object="${usuario}" enctype="multipart/form-data">
 
 					<div class="col-6">
@@ -88,7 +88,7 @@
 						<div class="form-group">
 							<label for="nickname">NICKNAME:</label> <input type="text"
 								required th:field="*{username}" class="form-control"
-								id="nickname"></input>
+								id="nickname" readonly="readonly"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('username')}"
 								th:errors="*{username}"></div>

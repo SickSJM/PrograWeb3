@@ -12,13 +12,13 @@ import pe.edu.upc.entities.Usuario;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-	@Query("select count(l.NombreUsuario) from Usuario l where l.NombreUsuario=:name")
-	public int buscarUsuario(@Param("name") String NombreUsuario);
+	//@Query("select count(l.NombreUsuario) from Usuario l where l.NombreUsuario=:name")
+	//public int buscarUsuario(@Param("name") String NombreUsuario);
 	
 	public Usuario findByUsername(String username);
 	
 	@Query("select count(u.username) from Usuario u where u.username =:username")
-	public int buscarUsername(@Param("username") String nombre);
+	public int buscarUsername(@Param("username") String username);
 	
 	@Transactional
 	@Modifying
