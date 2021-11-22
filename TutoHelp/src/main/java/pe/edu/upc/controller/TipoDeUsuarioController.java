@@ -46,15 +46,19 @@ public class TipoDeUsuarioController {
 		if (result.hasErrors()) {
 			return "/tipodeusuario/tipodeusuario";
 		} else {
-			    rService.insert(tipodeusuario);
+			int rpta = rService.insert(tipodeusuario);
+			if (rpta > 0) {
 				model.addAttribute("listaUsuarios", uService.list());
+				model.addAttribute("mensaje", "Ya existe");
+				return "/tipodeusuario/tipodeusuario";
+			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
+			}
 		}
 		model.addAttribute("listaTipodeusuarios", rService.list());
 
 		return "/tipodeusuario/tipodeusuario";
-
 	}
 
 	@GetMapping("/list")
@@ -86,9 +90,23 @@ public class TipoDeUsuarioController {
 		return "tipodeusuario/listTipodeusuario";
 	}
 
-	@RequestMapping("/update/{id}")
+	@RequestMapping("/detalle/{id}")
 	public String goUpdate(@PathVariable int id,Model model, RedirectAttributes objRedir) {
-		Optional<Tipodeusuario> tipodeusuario=rService.listarId(id);
+		try {
+			model.addAttribute("listaUsuarios", uService.list());
+			Optional<Tipodeusuario> tipodeusuario = rService.listarId(id);
+			if (!tipodeusuario.isPresent()) {
+				model.addAttribute("info", "Usuario no existe");
+				return "redirect:/tipodeusuarios/list";
+			} else {
+				model.addAttribute("tipodeusuario", tipodeusuario.get());
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/tipodeusuario/update";		
+	/*	Optional<Tipodeusuario> tipodeusuario=rService.listarId(id);
 		model.addAttribute("listaUsuarios", uService.list());
 		if(tipodeusuario==null) {
 			objRedir.addFlashAttribute("mensaje","ocurrio un error");
@@ -96,7 +114,7 @@ public class TipoDeUsuarioController {
 		}else {
 			model.addAttribute("tipodeusuario",tipodeusuario);
 			return "tipodeusuario/tipodeusuario";
-		}
+		}*/
 	}
 
 }

@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Soporte;
 import pe.edu.upc.serviceinterface.IUsuarioService;
@@ -52,36 +51,51 @@ public class SoporteController {
 	public String saveMarca(@Valid Soporte soporte, BindingResult binRes, Model model,SessionStatus status)
 			throws Exception {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listaUsuarios", cService.list());
-			return "soporte/soporte";
+			return "/soporte/soporte";
 		} else {
-			int rpta = pService.insert(soporte);
-			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
-				return "soporte/soporte";
-			} else {
-				model.addAttribute("mensaje", "Se guardó correctamente");
-				status.setComplete();
-			}
+			model.addAttribute("listaUsuarios", cService.list());
+			pService.insert(soporte);
+			model.addAttribute("mensaje", "Se guardó correctamente");
+			status.setComplete();
 		}
-		model.addAttribute("soporte", new Soporte());
-		return "redirect:/soportes/list";
+		model.addAttribute("listaSoportes", pService.list());
+
+		return "/soporte/soporte";
 	}
 	@RequestMapping("/delete")
-	public String deleteCategory(@RequestParam(value="id") Integer id, Model model) {
-		pService.delete(id);
-		return "redirect:/soportes/list";
-	}
-	@RequestMapping("/update/{id}")
-	public String goUpdate(@PathVariable int id,Model model, RedirectAttributes objRedir) {
-		Optional<Soporte> soporte=pService.listId(id);
-		if(soporte==null) {
-			objRedir.addFlashAttribute("mensaje","ocurrio un error");
-			return "soporte/soporte";
-		}else {
-			model.addAttribute("soporte",soporte);
-			return "soporte/soporte";
-		}
-	}
+	public String deleteSoporte(Map<String, Object> model,@RequestParam(value="id") Integer id) {
+		try {
+			if (id != null && id > 0) {
+				pService.delete(id);
+				model.put("mensaje", "Se eliminó correctamente");
 
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.put("mensaje", "No se puede eliminar el rol");
+		}
+		model.put("listaSoportes", pService.list());
+
+//		return "redirect:/categories/list";
+		return "soporte/listSoportes";
+	}
+	
+	@RequestMapping("/detalle/{id}")
+	public String detailsSoporte(@PathVariable(value = "id") int id, Model model) {
+		try {
+			model.addAttribute("listaUsuarios", cService.list());
+			Optional<Soporte> soporte = pService.listId(id);
+			if (!soporte.isPresent()) {
+				model.addAttribute("info", "Usuario no existe");
+				return "redirect:/soportes/list";
+			} else {
+				
+				model.addAttribute("soporte", soporte.get());
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/soporte/update";
+	}
 }

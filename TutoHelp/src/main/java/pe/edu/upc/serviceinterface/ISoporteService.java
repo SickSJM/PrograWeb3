@@ -7,7 +7,7 @@ import pe.edu.upc.entities.Soporte;
 
 
 public interface ISoporteService {
-	public Integer insert(Soporte soporte);
+	public void insert(Soporte soporte);
 
 	List<Soporte> list();
 	public void delete(int idSoporte);

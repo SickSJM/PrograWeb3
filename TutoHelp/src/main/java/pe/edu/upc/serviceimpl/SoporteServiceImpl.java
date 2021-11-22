@@ -17,12 +17,10 @@ public class SoporteServiceImpl implements ISoporteService {
 	private ISoporteRepository pR;
 
 	@Override
-	public Integer insert(Soporte soporte) {
-		int rpta = pR.buscarSoporte(soporte.getReporteMensaje());
-		if (rpta == 0) {
+	public void insert(Soporte soporte) {
+		
 			pR.save(soporte);
-		}
-		return rpta;
+
 	}
 
 	@Override

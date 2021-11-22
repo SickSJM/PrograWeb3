@@ -18,9 +18,12 @@ public class TipodeUsuarioServiceImpl implements ITipodeusuarioService {
 	private TipodeusuarioRepository rR;
 
 	@Override
-	public void insert(Tipodeusuario role) {
+	public Integer insert(Tipodeusuario role) {
+		int rpta = rR.buscarNombreTipousuario(role.getDescripcion());
+		if (rpta == 0) {
 			rR.save(role);
-
+		}
+		return rpta;
 	}
 	
 
