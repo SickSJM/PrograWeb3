@@ -32,42 +32,47 @@
 			<div class="col-8 frm-registro">
 				<form th:action="@{/profesores/save}" method="post"
 					th:object="${profesor}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{ProfesorID}"></input>
-
+					
+				
 						<div class="form-group">
 							<label for="nombre">NOMBRE:</label> <input type="text" required
-								th:field="*{ProfesorNombre}" class="form-control" id="nombre"></input>
+								th:field="*{profesornombre}" class="form-control" id="nombre"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('ProfesorNombre')}"
-								th:errors="*{ProfesorNombre}"></div>
+								th:if="${#fields.hasErrors('profesornombre')}"
+								th:errors="*{profesornombre}"></div>
 						</div>
 						
 						<div class="form-group">
 							<label for="apellido">APELLIDO:</label> <input type="text" required
-								th:field="*{ProfesorApellido}" class="form-control" id="apellido"></input>
+								th:field="*{profesorapellido}" class="form-control" id="apellido"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('ProfesorApellido')}"
-								th:errors="*{ProfesorApellido}"></div>
+								th:if="${#fields.hasErrors('profesorapellido')}"
+								th:errors="*{profesorapellido}"></div>
 						</div>
 						
 						<div class="form-group">
 							<label for="universidad">UNIVERSIDAD:</label> <input type="text" required
-								th:field="*{Universidad}" class="form-control" id="universidad"></input>
+								th:field="*{universidad}" class="form-control" id="universidad"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('Universidad')}"
-								th:errors="*{Universidad}"></div>
+								th:if="${#fields.hasErrors('universidad')}"
+								th:errors="*{universidad}"></div>
 						</div>
 						
 						<div class="form-group">
 							<label for="curso">CURSO:</label> <input type="text" required
-								th:field="*{Curso}" class="form-control" id="curso"></input>
+								th:field="*{curso}" class="form-control" id="curso"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('Curso')}"
-								th:errors="*{Curso}"></div>
+								th:if="${#fields.hasErrors('curso')}"
+								th:errors="*{curso}"></div>
 						</div>
-						
+						<div class="form-group row">
+						<label for="color" class="col-sm-2 col-form-label">Usuario</label>
+						<div class="col-sm-6">
+							<select class="custom-select custom-select-sm" th:field="*{user}">
+								<option th:each="u : ${listaUsuarios}" th:value="${u.UsuarioID}"
+									th:utext="${u.username}" />
+							</select>
+						</div>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>

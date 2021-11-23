@@ -26,28 +26,38 @@
 
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Profesores</h3>
-				<a th:href="@{/profesores/nuevo}" class="btn btn-warning">Nuevo</a>
+				<a th:href="@{/profesores/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Usuario</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Apellido</th>
 						<th scope="col" class="text-center">Universidad</th>
 						<th scope="col" class="text-center">Curso</th>
+						<th scope="col" class="text-center">Operacion</th>
+						<th scope="col" class="text-center">Operacion</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="su : ${listaProfesores}">
-						<td class="text-center" th:text="${su.ProfesorID}"></td>
-						<td class="text-center" th:text="${su.ProfesorNombre}"></td>
-						<td class="text-center" th:text="${su.ProfesorApellido}"></td>
-						<td class="text-center" th:text="${su.Universidad}"></td>
-						<td class="text-center" th:text="${su.Curso}"></td>
+					<tr th:each="r : ${listaProfesores}">
+						<td class="text-center" th:text="${r.id}"></td>
+						<td class="text-center" th:text="${r.user.username}"></td>
+						<td class="text-center" th:text="${r.profesornombre}"></td>
+						<td class="text-center" th:text="${r.profesorapellido}"></td>
+						<td class="text-center" th:text="${r.universidad}"></td>
+						<td class="text-center" th:text="${r.curso}"></td>
+						<td class="text-center"><a
+					 th:href="@{/profesores/delete?id=}+${r.id}" ><i class="fa fa-trash"
+					    style="color: #cb3234;"></i></a></td>
+					    <td class="text-center">
+						<a th:href="@{'/profesores/detalle/'+${r.id}}" ><i class="fa fa-pencil"
+					     style="color: #cb3234;"></i></a></td>
 					</tr>
 				</tbody>
-			</table>
+			</table> 
 		</div>
 		<div th:if="${mensaje}" class="alert alert-danger">
 			<p th:text="${mensaje}"></p>
