@@ -50,8 +50,8 @@ public class Profesor {
 		this.profesorapellido = profesorapellido;
 	}
 
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El apellido del Profesor no puede contener un caracter especial")
-	@Pattern(regexp = "[^0-9]+", message = "El apellido del Profesor no puede contener un número")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre de la universidad no puede contener un caracter especial")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre de la universidad no puede contener un número")
 	@Column(name="universidad",nullable = false,length = 30)
 	private String universidad;
 
@@ -63,8 +63,7 @@ public class Profesor {
 		this.universidad = universidad;
 	}
 	
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El apellido del Profesor no puede contener un caracter especial")
-	@Pattern(regexp = "[^0-9]+", message = "El apellido del Profesor no puede contener un número")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El curso no puede contener un caracter especial")
 	@Column(name="curso",nullable = false,length = 30)
 	private String curso;
 
