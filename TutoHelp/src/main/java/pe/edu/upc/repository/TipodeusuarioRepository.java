@@ -8,9 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Tipodeusuario;
+import pe.edu.upc.entities.Usuario;
 
 @Repository
 public interface TipodeusuarioRepository extends JpaRepository<Tipodeusuario, Long> {
-	@Query("select count(c.descripcion) from Tipodeusuario c where c.descripcion =:descripcion")
-	public int buscarNombreTipousuario(@Param("descripcion") String nombreCategoria);
+	@Query("select count(c.user) from Tipodeusuario c where c.user =:user")
+	public int buscarNombreTipousuario(@Param("user") Usuario usuario);
 }

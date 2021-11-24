@@ -33,12 +33,20 @@
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaCursos}">
 						<td class="text-center" th:text="${cat.CursoID}"></td>
 						<td class="text-center" th:text="${cat.CursoNombre}"></td>
+						<td class="text-center"><a
+							th:href="@{/cursos/delete?id=}+${cat.CursoID}"><i
+								class="fa fa-trash" style="color: #cb3234;"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/cursos/update/'+${cat.CursoID}}"><i
+								class="fa fa-pencil" style="color: #cb3234;"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

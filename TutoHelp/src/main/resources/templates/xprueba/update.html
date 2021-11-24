@@ -21,48 +21,67 @@
 
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+		<div class="col-3" style="align-content: right">
+			<h3>Registrar Prueba</h3>
+		</div>
+		<div class="content container row col-12">
 
-		<div class="content container">
+			<div class="col-6 frm-registro">
+				<form th:action="@{/pruebas/save}" method="post" class="row"
+					th:object="${xprueba}" enctype="multipart/form-data">
 
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Pruebas Compartidas</h3>
-				<a th:href="@{/pruebas/nuevo}" class="btnnew btn btn-danger">Nuevo</a>
+					<div class="col-6">
+						<div class="form-group">
+							<label for="idrace">ID:</label> <input type="text" readonly
+								class="form-control" th:field="*{PruebaID}"></input>
+						</div>
+
+						<div class="form-group" style="display: none">
+							<label for="usuario">USUARIO:</label> <select
+								class="form-control" th:field="*{usuario.UsuarioID}">
+								<option th:each="c: ${listaUsuarios}"
+									th:value="${c.UsuarioID}"
+									th:text="${c.NombreUsuario}"
+									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="nombre">NOMBRE:</label> <input type="text" required
+								th:field="*{NombreArchivo}" class="form-control" id="nombre"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('NombreArchivo')}"
+							th:errors="*{NombreArchivo}"></div>
+							</div>
+						<div class="form-group">
+							<label for="descri">DESCRIPCIÓN:</label> <input type="text" required
+								th:field="*{DescripcionArchivo}" class="form-control" id="descri"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('DescripcionArchivo')}"
+							th:errors="*{DescripcionArchivo}"></div>
+							</div>
+						
+						<div class="form-group">
+							<label for="url">URL:</label> <input type="text" required
+								th:field="*{Url}" class="form-control" id="url"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('Url')}"
+							th:errors="*{Url}"></div>
+							</div>
+						
+					<button style="margin: 0px 30px;" type="submit"
+						class="btnadd btn btn-danger">Aceptar</button>
+					<a href="/pruebas/list" class="btn btn-light">Cancelar</a>
+					</div>
+				</form>
+
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Usuario</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Descripción</th>
-						<th scope="col" class="text-center">Url</th>
-						<th scope="col" class="text-center">Operación</th>
-						<th scope="col" class="text-center">Operación</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="p: ${listaPruebas}">
-						<td class="text-center" th:text="${p.PruebaID}"></td>
-						<td class="text-center" th:text="${p.usuario.NombreUsuario}"></td>
-						<td class="text-center" th:text="${p.NombreArchivo}"></td>
-						<td class="text-center" th:text="${p.DescripcionArchivo}"></td>
-						<td class="text-center" th:text="${p.Url}"></td>
-						<td class="text-center"><a
-							th:href="@{/pruebas/delete?id=}+${p.PruebaID}"><i
-								class="fa fa-trash" style="color: #cb3234;"></i></a></td>
-						<td class="text-center"><a
-							th:href="@{'/pruebas/update/'+${p.PruebaID}}"><i
-								class="fa fa-pencil" style="color: #cb3234;"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
-			<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
 		</div>
-		</div>
-		
-
 	</div>
+
 
 
 	<script src="/js/popper.min.js"></script>

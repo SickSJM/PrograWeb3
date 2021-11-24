@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +16,26 @@ public class ConsultaServiceImpl implements IConsultaService {
 	private IConsultaRepository pR;
 
 	@Override
-	public Integer insert(Consulta consulta) {
-		int rpta = pR.buscarConsulta(consulta.getTextoConsulta());
-		if (rpta == 0) {
+	public void insert(Consulta consulta) {
 			pR.save(consulta);
-		}
-		return rpta;
 	}
 
 	@Override
 	public List<Consulta> list() {
 		// TODO Auto-generated method stub
 		return pR.findAll();
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		pR.deleteById(id);
+	}
+
+	@Override
+	public Optional<Consulta> listId(int id) {
+		// TODO Auto-generated method stub
+		return pR.findById(id);
 	}
 
 

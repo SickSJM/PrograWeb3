@@ -15,52 +15,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Profesor;
 import pe.edu.upc.serviceinterface.IProfesorService;
-import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
 @RequestMapping("/profesores")
 public class ProfesorController {
-
-	@Autowired
-	private IUsuarioService uService;
+	
 	@Autowired
 	private IProfesorService sService;
 
-	@GetMapping("/new")
+	@GetMapping("/nuevo")
 	public String newProfesor(Model model) {
 		model.addAttribute("profesor", new Profesor());
-		model.addAttribute("listaUsuarios", uService.list());
 		return "profesor/profesor";
 	}
 
-	@PostMapping("/save")
-	public String saveProfesor(@Valid Profesor profesor, BindingResult result, Model model, SessionStatus status) throws Exception {
-		if (result.hasErrors()) {
-			return "/profesor/profesor";
-		} else {
-			sService.insert(profesor);
-			model.addAttribute("mensaje", "Se guardó correctamente");
-			status.setComplete();
-		}
-		model.addAttribute("listaProfesores", sService.list());
-
-		return "/profesor/profesor";
-
-	}
-
 	@GetMapping("/list")
-	public String listProfesor(Model model) {
+	public String listProfesores(Model model) {
 		try {
 			model.addAttribute("profesor", new Profesor());
 			model.addAttribute("listaProfesores", sService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/profesor/listProfesor";
+		return "profesor/listProfesores";
 	}
+
+	@PostMapping("/save")
+	public String saveMarca(@Valid Profesor profesor, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+		if (result.hasErrors()) {
+			return "profesor/profesor";
+		} else {
+			int rpta = sService.insert(profesor);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "profesor/profesor";
+			} else {
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
+			}
+		}
+		model.addAttribute("profesor", new Profesor());
+		return "redirect:/profesores/list";
+	}
+	
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -71,28 +73,37 @@ public class ProfesorController {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			model.put("mensaje", "No se puede eliminar el rol");
+			model.put("mensaje", "No se pudo eliminar");
 		}
 		model.put("listaProfesores", sService.list());
 
-		return "profesor/listProfesor";
+		return "profesor/listProfesores";
 	}
-	@GetMapping("/detalle/{id}")
-	public String detailsProfesor(@PathVariable(value = "id") int id, Model model) {
-		try {
-			model.addAttribute("listaUsuarios", uService.list());
-			Optional<Profesor> profesor = sService.listarId(id);
-			if (!profesor.isPresent()) {
-				model.addAttribute("info", "Usuario no existe");
-				return "redirect:/profesores/list";
-			} else {
-				
-				model.addAttribute("profesor", profesor.get());
-			}
 
-		} catch (Exception e) {
-			model.addAttribute("error", e.getMessage());
+	@RequestMapping("/update/{id}")
+	public String goUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+		Optional<Profesor> profesor = sService.listarId(id);
+		if (profesor == null) {
+			objRedir.addFlashAttribute("mensaje", "ocurrio un error");
+			return "profesor/profesorMOD";
+		} else {
+			model.addAttribute("profesor", profesor);
+			return "profesor/profesorMOD";
 		}
-		return "/profesor/update";
+	}
+	
+	@PostMapping("/save2")
+	public String save(@Valid Profesor profesor, BindingResult binRes, Model model, SessionStatus status)
+			throws Exception {
+		if (binRes.hasErrors()) {
+			return "profesor/profesorMOD";
+		} else {
+			sService.insert2(profesor);
+			model.addAttribute("mensaje", "Se actualizó correctamente");
+			status.setComplete();
+
+		}
+		model.addAttribute("profesor", new Profesor());
+		return "redirect:/profesores/list";
 	}
 }

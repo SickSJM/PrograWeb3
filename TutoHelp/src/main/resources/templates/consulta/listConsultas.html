@@ -34,6 +34,8 @@
 						<th scope="col" class="text-center">ID</th>
 						<th scope="col" class="text-center">Usuario</th>
 						<th scope="col" class="text-center">Consulta</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>	
 					</tr>
 				</thead>
 				<tbody>
@@ -41,7 +43,12 @@
 						<td class="text-center" th:text="${p.ConsultaID}"></td>
 						<td class="text-center" th:text="${p.usuario.NombreUsuario}"></td>
 						<td class="text-center" th:text="${p.TextoConsulta}"></td>
-					
+						<td class="text-center">
+						<a th:href="@{/consultas/delete?id=}+${p.ConsultaID}" ><i class="fa fa-trash"
+					    style="color: #cb3234;"></i></a></td>
+					    <td class="text-center">
+						<a th:href="@{'/consultas/detalle/'+${p.ConsultaID}}" ><i class="fa fa-pencil"
+					     style="color: #cb3234;"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

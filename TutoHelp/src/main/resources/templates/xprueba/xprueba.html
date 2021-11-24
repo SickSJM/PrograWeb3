@@ -49,27 +49,26 @@
 						<div class="form-group">
 							<label for="nombre">NOMBRE:</label> <input type="text" required
 								th:field="*{NombreArchivo}" class="form-control" id="nombre"></input>
-						</div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('NombreArchivo')}"
 							th:errors="*{NombreArchivo}"></div>
-							
-							<div class="form-group">
-							<label for="descrip">DESCRIPCIÓN:</label> <input type="text" required
-								th:field="*{DescripcionArchivo}" class="form-control" id="descrip"></input>
-						</div>
+							</div>
+						<div class="form-group">
+							<label for="descri">DESCRIPCIÓN:</label> <input type="text" required
+								th:field="*{DescripcionArchivo}" class="form-control" id="descri"></input>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('DescripcionArchivo')}"
 							th:errors="*{DescripcionArchivo}"></div>
-							
-							<div class="form-group">
-							<label for="ur">URL:</label> <input type="text" required
-								th:field="*{Url}" class="form-control" id="ur"></input>
-						</div>
+							</div>
+						
+						<div class="form-group">
+							<label for="url">URL:</label> <input type="text" required
+								th:field="*{Url}" class="form-control" id="url"></input>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('Url')}"
 							th:errors="*{Url}"></div>
-
+							</div>
+						
 					<button style="margin: 0px 30px;" type="submit"
 						class="btnadd btn btn-danger">Aceptar</button>
 					<a href="/pruebas/list" class="btn btn-light">Cancelar</a>

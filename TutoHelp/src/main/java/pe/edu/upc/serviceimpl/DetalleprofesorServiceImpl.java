@@ -6,11 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import pe.edu.upc.entities.Detalleprofesor;
 import pe.edu.upc.repository.IDetalleprofesorRepository;
 import pe.edu.upc.serviceinterface.IDetalleprofesorService;
-
 
 @Service
 public class DetalleprofesorServiceImpl implements IDetalleprofesorService {
@@ -28,6 +26,7 @@ public class DetalleprofesorServiceImpl implements IDetalleprofesorService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<Detalleprofesor> list() {
 		// TODO Auto-generated method stub
 		return rR.findAll();

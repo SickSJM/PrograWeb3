@@ -21,18 +21,18 @@
 
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
-		<div class="col-3" style="align-content: right">
-			<h3>Actualizar</h3>
-		</div>
+
 		<div class="content container row col-12">
-
-			<div class="col-6 frm-registro">
+			<div class="col-1">
+				<h3></h3>
+			</div>
+			<div class="col-3">
+				<h3>Registrar Detalle Profesores</h3>
+			</div>
+			<div class="col-8 frm-registro">
 				<form th:action="@{/detalleprofesores/save}" method="post"
-					class="row" th:object="${detalleprofesor}"
-					enctype="multipart/form-data">
-
-					<div class="col-6">
-						<div class="form-group row">
+					th:object="${detalleprofesor}">
+					<div class="form-group row">
 							<label for="id" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{id}" class="form-control"
@@ -40,51 +40,65 @@
 									class="form-text text-success"
 									th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
 							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="usuario">USUARIO:</label> <select
-								class="form-control" th:field="*{user}">
-								<option th:each="u: ${listaUsuarios}" th:value="${u.UsuarioID}"
-									th:text="${u.username}"></option>
-							</select>
-						</div>
-
-						<div class="form-group">
-							<label for="calificacion">Calificacion:</label> <input
-								type="text" style="height: 50px; font-size: 10pt; width: 800px;"
-								required th:field="*{calificacion}" class="form-control"
-								id="calificacion"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('calificacion')}"
-							th:errors="*{calificacion}"></div>
-
-
-						<div class="form-group">
-							<label for="comentario">Comentario:</label> <input
-								type="text" style="height: 80px; font-size: 10pt; width: 800px;"
-								required th:field="*{comentario}" class="form-control"
-								id="comentario"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('comentario')}"
-							th:errors="*{comentario}"></div>
-
-
-						<button style="margin: 0px 30px;" type="submit"
-							class="btnadd btn btn-danger">Aceptar</button>
-						<a href="/detalleprofesores/list" class="btn btn-light">Cancelar</a>
 					</div>
-				</form>
+					<div class="form-group row" style="display: none">
+							<label for="color" class="col-sm-2 col-form-label">Profesor</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{profesor}">
+									<option th:each="u : ${listaProfesores}" th:value="${u.ProfesorID}"
+										th:utext="${u.ProfesorNombre}" />
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row" style="display: none">
+							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{user}">
+									<option th:each="u : ${listaUsuarios}" th:value="${u.UsuarioID}"
+										th:utext="${u.username}" />
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Calificacion:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{calificacion}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('calificacion')}"
+									th:errors="*{calificacion}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Comentario:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{comentario}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('comentario')}"
+									th:errors="*{comentario}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/detalleprofesores/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
 
+				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>
 			</div>
+
 		</div>
 	</div>
-
 
 
 	<script src="/js/popper.min.js"></script>

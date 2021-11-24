@@ -41,12 +41,12 @@
 							</div>
 					    </div>
 
-						<div class="form-group">
+						<div class="form-group" style="display: none">
 							<label for="usuario">USUARIO:</label> <select
 								class="form-control" th:field="*{usuario.UsuarioID}">
 								<option th:each="c: ${listaUsuarios}"
 									th:value="${c.UsuarioID}"
-									th:text="${c.NombreUsuario}"
+									th:text="${c.username}"
 									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})"></option>
 							</select>
 						</div>

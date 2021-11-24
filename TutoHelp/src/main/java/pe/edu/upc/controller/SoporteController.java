@@ -51,6 +51,7 @@ public class SoporteController {
 	public String saveMarca(@Valid Soporte soporte, BindingResult binRes, Model model,SessionStatus status)
 			throws Exception {
 		if (binRes.hasErrors()) {
+			model.addAttribute("listaUsuarios", cService.list());
 			return "/soporte/soporte";
 		} else {
 			model.addAttribute("listaUsuarios", cService.list());
@@ -58,9 +59,9 @@ public class SoporteController {
 			model.addAttribute("mensaje", "Se guardó correctamente");
 			status.setComplete();
 		}
-		model.addAttribute("listaSoportes", pService.list());
+		model.addAttribute("soporte", new Soporte());
 
-		return "/soporte/soporte";
+		return "soporte/listSoportes";
 	}
 	@RequestMapping("/delete")
 	public String deleteSoporte(Map<String, Object> model,@RequestParam(value="id") Integer id) {
@@ -96,6 +97,6 @@ public class SoporteController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/soporte/update";
+		return "soporte/update";
 	}
 }

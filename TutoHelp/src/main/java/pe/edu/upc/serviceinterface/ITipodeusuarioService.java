@@ -7,6 +7,7 @@ import pe.edu.upc.entities.Tipodeusuario;
 
 public interface ITipodeusuarioService {
 	public Integer insert(Tipodeusuario role);
+	public void insert2(Tipodeusuario role);
 	public void delete(long idrole);
 	Optional<Tipodeusuario> listarId(long idrole);
 /*

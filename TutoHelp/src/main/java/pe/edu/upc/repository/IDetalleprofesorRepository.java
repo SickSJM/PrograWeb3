@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Detalleprofesor;
 
-
-
 @Repository
 public interface IDetalleprofesorRepository extends JpaRepository<Detalleprofesor, Long> {
 

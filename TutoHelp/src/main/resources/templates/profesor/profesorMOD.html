@@ -22,47 +22,64 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
-
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Profesores</h3>
-				<a th:href="@{/profesores/new}" class="btn btn-warning">Nuevo</a>
+		<div class="content container row col-12">
+			<div class="col-1">
+				<h3></h3>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Usuario</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Apellido</th>
-						<th scope="col" class="text-center">Universidad</th>
-						<th scope="col" class="text-center">Curso</th>
-						<th scope="col" class="text-center">Operacion</th>
-						<th scope="col" class="text-center">Operacion</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="r : ${listaProfesores}">
-						<td class="text-center" th:text="${r.id}"></td>
-						<td class="text-center" th:text="${r.user.username}"></td>
-						<td class="text-center" th:text="${r.profesornombre}"></td>
-						<td class="text-center" th:text="${r.profesorapellido}"></td>
-						<td class="text-center" th:text="${r.universidad}"></td>
-						<td class="text-center" th:text="${r.curso}"></td>
-						<td class="text-center"><a
-					 th:href="@{/profesores/delete?id=}+${r.id}" ><i class="fa fa-trash"
-					    style="color: #cb3234;"></i></a></td>
-					    <td class="text-center">
-						<a th:href="@{'/profesores/detalle/'+${r.id}}" ><i class="fa fa-pencil"
-					     style="color: #cb3234;"></i></a></td>
-					</tr>
-				</tbody>
-			</table> 
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+			<div class="col-3">
+				<h3>Registrar Profesor</h3>
+			</div>
+			<div class="col-8 frm-registro">
+				<form th:action="@{/profesores/save2}" method="post"
+					th:object="${profesor}">
+					<div class="form-group">
+						<label>ID:</label> <input type="text" class="form-control"
+							readonly th:field="*{ProfesorID}"></input>
 
+						<div class="form-group">
+							<label for="nombre">NOMBRE:</label> <input type="text" required
+								th:field="*{ProfesorNombre}" class="form-control" id="nombre" readonly="readonly"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('ProfesorNombre')}"
+								th:errors="*{ProfesorNombre}"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="apellido">APELLIDO:</label> <input type="text" required
+								th:field="*{ProfesorApellido}" class="form-control" id="apellido"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('ProfesorApellido')}"
+								th:errors="*{ProfesorApellido}"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="universidad">UNIVERSIDAD:</label> <input type="text" required
+								th:field="*{Universidad}" class="form-control" id="universidad"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Universidad')}"
+								th:errors="*{Universidad}"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="curso">CURSO:</label> <input type="text" required
+								th:field="*{Curso}" class="form-control" id="curso"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Curso')}"
+								th:errors="*{Curso}"></div>
+						</div>
+						
+
+					</div>
+					<button type="submit" class="btn btn-warning">Aceptar</button>
+					<a href="/profesores/list" class="btn btn-light">Cancelar</a>
+
+				</form>
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 

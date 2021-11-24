@@ -49,11 +49,10 @@
 						<div class="form-group">
 							<label for="emisor">EMISOR:</label> <input type="text" required
 								th:field="*{Emisor}" class="form-control" id="emisor"></input>
-						</div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('Emisor')}"
 							th:errors="*{Emisor}"></div>
-							
+							</div>
 						<div class="form-group">
 							<label for="fecha">FECHA:</label> <input type="date" required
 								th:field="*{Fecha}" class="form-control" id="fecha"></input>

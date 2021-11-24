@@ -21,48 +21,63 @@
 
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
-
-		<div class="content container">
-
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Pruebas Compartidas</h3>
-				<a th:href="@{/pruebas/nuevo}" class="btnnew btn btn-danger">Nuevo</a>
-			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Usuario</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">Descripción</th>
-						<th scope="col" class="text-center">Url</th>
-						<th scope="col" class="text-center">Operación</th>
-						<th scope="col" class="text-center">Operación</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="p: ${listaPruebas}">
-						<td class="text-center" th:text="${p.PruebaID}"></td>
-						<td class="text-center" th:text="${p.usuario.NombreUsuario}"></td>
-						<td class="text-center" th:text="${p.NombreArchivo}"></td>
-						<td class="text-center" th:text="${p.DescripcionArchivo}"></td>
-						<td class="text-center" th:text="${p.Url}"></td>
-						<td class="text-center"><a
-							th:href="@{/pruebas/delete?id=}+${p.PruebaID}"><i
-								class="fa fa-trash" style="color: #cb3234;"></i></a></td>
-						<td class="text-center"><a
-							th:href="@{'/pruebas/update/'+${p.PruebaID}}"><i
-								class="fa fa-pencil" style="color: #cb3234;"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
-			<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
+		<div class="col-3" style="align-content: right">
+			<h3> Comentario</h3>
 		</div>
-		</div>
-		
+		<div class="col-8 frm-registro">
+				<form th:action="@{/comentarios/save}" th:object="${comentario}"
+						method="post">
 
+						<div class="form-group row">
+							<label for="color" class="col-sm-2 col-form-label">Usuario</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{user}">
+									<option th:each="u : ${listaUsuarios}" th:value="${u.UsuarioID}"
+										th:utext="${u.username}" />
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="color" class="col-sm-2 col-form-label">Consulta</label>
+							<div class="col-sm-6">
+								<select class="custom-select custom-select-sm"
+									th:field="*{consulta}">
+									<option th:each="u : ${listaConsultas}" th:value="${u.ConsultaID}"
+										th:utext="${u.TextoConsulta}" />
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Comentario:</label>
+							<div class="col-sm-6">
+								<input autofocus type="text" th:field="*{comentarioconsul}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('comentarioconsul')}"
+									th:errors="*{comentarioconsul}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/comentarios/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+					</form>
+
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			
+		</div>
 	</div>
+
 
 
 	<script src="/js/popper.min.js"></script>

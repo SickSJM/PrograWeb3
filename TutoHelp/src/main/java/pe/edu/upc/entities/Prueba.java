@@ -24,16 +24,17 @@ public class Prueba {
 	@JoinColumn(name = "UsuarioID", nullable = false)
 	private Usuario usuario;
 	
-	@Length (min = 1, max = 20, message = "La longitud del nombre de archivo es de 1 a 20 letras")
-	@Column(name = "NombreArchivo", nullable = false, length = 20)
+	
+	@Length (min = 1, max = 100, message = "La longitud del nombre de archivo es de 1 a 100 letras")
+	@Column(name = "NombreArchivo", nullable = false, length = 100)
 	private String NombreArchivo;
 	
-	@Length (min = 5, max = 100, message = "La longitud de la descripción es de 5 a 100 letras")
-	@Column(name = "DescripcionArchivo", nullable = false, length = 10)
+	@Length (min = 1, max = 100, message = "La longitud de la descripción es de 1 a 100 letras")
+	@Column(name = "DescripcionArchivo", nullable = false, length = 100)
 	private String DescripcionArchivo;
 	
 	@Length (min = 1, max = 100, message = "La longitud del url es de 1 a 100 letras")
-	@Column(name = "Url", nullable = false, length = 10)
+	@Column(name = "Url", nullable = false, length = 100)
 	private String Url;
 
 	public Prueba(int pruebaID, Usuario usuario,String nombreArchivo,String descripcionArchivo,String url) {

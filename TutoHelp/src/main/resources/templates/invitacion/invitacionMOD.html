@@ -22,37 +22,80 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 		<div class="col-3" style="align-content: right">
-			<h3>Registrar Soporte</h3>
+			<h3>Registrar Invitación</h3>
 		</div>
 		<div class="content container row col-12">
 
 			<div class="col-6 frm-registro">
-				<form th:action="@{/soportes/save}" method="post" class="row"
-					th:object="${soporte}" enctype="multipart/form-data">
+				<form th:action="@{/invitaciones/save2}" method="post" class="row"
+					th:object="${invitacion}" enctype="multipart/form-data">
 
 					<div class="col-6">
-
 						<div class="form-group">
+							<label for="idrace">ID:</label> <input type="text" readonly
+								class="form-control" th:field="*{InvitacionID}"></input>
+						</div>
+
+						<!--<div class="form-group">
 							<label for="usuario">USUARIO:</label> <select
+								class="form-control" th:field="*{usuario.UsuarioID}">
+								<option th:each="c: ${listaUsuarios}" th:value="${c.UsuarioID}"
+									th:text="${c.NombreUsuario}"
+									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})"></option>
+							</select>
+						</div>-->
+
+						<div class="form-group" style="display: none">
+							<label for="usuario">USUARIO:</label><select
 								class="form-control" th:field="*{usuario.UsuarioID}">
 								<option th:each="c: ${listaUsuarios}"
 									th:value="${c.UsuarioID}"
-									th:text="${c.username}"
-									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})"></option>
+									th:text="${c.NombreUsuario}"
+									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})" ></option>
 							</select>
 						</div>
 
 						<div class="form-group">
-							<label for="mensaje">REPORTE:</label> <input type="text" style="height: 400px;font-size: 10pt; width: 800px;" required
-								th:field="*{ReporteMensaje}" class="form-control" id="mensaje"></input>
+							<label for="emisor">EMISOR:</label> <input type="text" required
+								th:field="*{Emisor}" class="form-control" id="emisor" readonly="readonly"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Emisor')}" th:errors="*{Emisor}"></div>
 						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('ReporteMensaje')}"
-							th:errors="*{ReporteMensaje}"></div>
+						<div class="form-group">
+							<label for="fecha">FECHA:</label> <input type="date" required
+								th:field="*{Fecha}" class="form-control" id="fecha"></input>
+						</div>
 
-					<button style="margin: 0px 30px;" type="submit"
-						class="btnadd btn btn-danger">Aceptar</button>
-					<a href="/soportes/list" class="btn btn-light">Cancelar</a>
+					</div>
+					<div class="col-6">
+
+						<div class="form-group">
+							<label for="comentario">COMENTARIO:</label> <input type="text"
+								required th:field="*{Comentario}" class="form-control"
+								id="comentario"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Comentario')}"
+								th:errors="*{Comentario}"></div>
+						</div>
+						<div class="form-group">
+							<label for="link">LINK:</label> <input type="text" required
+								th:field="*{LinkReunion}" class="form-control" id="link"
+								readonly="readonly"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('LinkReunion')}"
+								th:errors="*{LinkReunion}"></div>
+						</div>
+
+						<div class="form-group">
+							<label for="estad">ESTADO:</label> <input type="text" required
+								th:field="*{Estado}" class="form-control" id="estad"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('Estado')}" th:errors="*{Estado}"></div>
+						</div>
+
+						<button style="margin: 0px 30px;" type="submit"
+							class="btnadd btn btn-danger">Aceptar</button>
+						<a href="/invitaciones/list" class="btn btn-light">Cancelar</a>
 					</div>
 				</form>
 

@@ -19,14 +19,20 @@ public class TipodeUsuarioServiceImpl implements ITipodeusuarioService {
 
 	@Override
 	public Integer insert(Tipodeusuario role) {
-		int rpta = rR.buscarNombreTipousuario(role.getDescripcion());
+		int rpta = rR.buscarNombreTipousuario(role.getUser());
 		if (rpta == 0) {
 			rR.save(role);
 		}
 		return rpta;
 	}
 	
-
+	@Override
+	public void insert2(Tipodeusuario role) {
+		
+		rR.save(role);
+	
+	}
+	
 	@Override
 	@Transactional
 	public void delete(long idrole) {

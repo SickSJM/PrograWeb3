@@ -38,6 +38,8 @@
 						<th scope="col" class="text-center">Comentario</th>
 						<th scope="col" class="text-center">LinkReunión</th>
 						<th scope="col" class="text-center">Estado</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,7 +51,12 @@
 						<td class="text-center" th:text="${p.Comentario}"></td>
 						<td class="text-center" th:text="${p.LinkReunion}"></td>
 						<td class="text-center" th:text="${p.Estado}"></td>
-					
+						<td class="text-center"><a
+							th:href="@{/invitaciones/delete?id=}+${p.InvitacionID}"><i
+								class="fa fa-trash" style="color: #cb3234;"></i></a></td>
+						<td class="text-center"><a
+							th:href="@{'/invitaciones/update/'+${p.InvitacionID}}"><i
+								class="fa fa-pencil" style="color: #cb3234;"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -1,9 +1,11 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Prueba;
 import pe.edu.upc.repository.IPruebaRepository;
@@ -15,12 +17,8 @@ public class PruebaServiceImpl implements IPruebaService {
 	private IPruebaRepository pR;
 
 	@Override
-	public Integer insert(Prueba xprueba) {
-		int rpta = pR.buscarPrueba(xprueba.getNombreArchivo());
-		if (rpta == 0) {
+	public void insert(Prueba xprueba) {
 			pR.save(xprueba);
-		}
-		return rpta;
 	}
 
 	@Override
@@ -29,5 +27,15 @@ public class PruebaServiceImpl implements IPruebaService {
 		return pR.findAll();
 	}
 
-
+	@Override
+	@Transactional
+	public void delete(int id) {
+		pR.deleteById(id);
+	}
+	
+	@Override
+	public Optional<Prueba> listarId(int id) {
+		// TODO Auto-generated method stub
+		return pR.findById(id);
+	}
 }

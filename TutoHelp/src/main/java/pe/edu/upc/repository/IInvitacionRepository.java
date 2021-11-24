@@ -9,6 +9,6 @@ import pe.edu.upc.entities.Invitacion;
 
 @Repository
 public interface IInvitacionRepository extends JpaRepository<Invitacion, Integer> {
-	@Query("select count(l.LinkReunion) from Invitacion l where l.LinkReunion=:name")
-	public int buscarInvitacion(@Param("name") String LinkReunion);
+	@Query("select count(l.LinkReunion) from Invitacion l where l.LinkReunion=:LinkReunion")
+	public int buscarInvitacion(@Param("LinkReunion") String LinkReunion);
 }

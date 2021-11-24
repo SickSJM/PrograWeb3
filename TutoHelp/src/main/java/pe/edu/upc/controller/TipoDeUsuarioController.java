@@ -58,7 +58,7 @@ public class TipoDeUsuarioController {
 		}
 		model.addAttribute("listaTipodeusuarios", rService.list());
 
-		return "/tipodeusuario/tipodeusuario";
+		return "/tipodeusuario/listTipodeusuario";
 	}
 
 	@GetMapping("/list")
@@ -78,7 +78,7 @@ public class TipoDeUsuarioController {
 			if (id != null && id > 0) {
 				rService.delete(id);
 				model.put("mensaje", "Se eliminó correctamente");
-
+				
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -95,6 +95,7 @@ public class TipoDeUsuarioController {
 		try {
 			model.addAttribute("listaUsuarios", uService.list());
 			Optional<Tipodeusuario> tipodeusuario = rService.listarId(id);
+			//rService.delete(id);
 			if (!tipodeusuario.isPresent()) {
 				model.addAttribute("info", "Usuario no existe");
 				return "redirect:/tipodeusuarios/list";
@@ -106,15 +107,21 @@ public class TipoDeUsuarioController {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "/tipodeusuario/update";		
-	/*	Optional<Tipodeusuario> tipodeusuario=rService.listarId(id);
-		model.addAttribute("listaUsuarios", uService.list());
-		if(tipodeusuario==null) {
-			objRedir.addFlashAttribute("mensaje","ocurrio un error");
-			return "tipodeusuario/tipodeusuario";
-		}else {
-			model.addAttribute("tipodeusuario",tipodeusuario);
-			return "tipodeusuario/tipodeusuario";
-		}*/
 	}
-
+	
+	@PostMapping("/save2")
+	public String save(@Valid Tipodeusuario tipodeusuario, BindingResult result, Model model, SessionStatus status) throws Exception {
+		if (result.hasErrors()) {
+			return "/tipodeusuario/update";
+		} else {
+			rService.insert2(tipodeusuario);
+				//model.addAttribute("listaUsuarios", uService.list());
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
+			}
+		model.addAttribute("listaTipodeusuarios", rService.list());
+		model.addAttribute("tipodeusuario", new Tipodeusuario());
+		return "/tipodeusuario/listTipodeusuario";
+	}
+	
 }

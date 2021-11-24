@@ -6,8 +6,6 @@ import java.util.Optional;
 import pe.edu.upc.entities.Detalleprofesor;
 
 
-
-
 public interface IDetalleprofesorService {
 	public void insert(Detalleprofesor role);
 	public void delete(long idDetalle);

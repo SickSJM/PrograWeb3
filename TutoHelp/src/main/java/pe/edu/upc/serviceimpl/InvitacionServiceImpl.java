@@ -1,9 +1,11 @@
 package pe.edu.upc.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Invitacion;
 import pe.edu.upc.repository.IInvitacionRepository;
@@ -22,6 +24,13 @@ public class InvitacionServiceImpl implements IInvitacionService {
 		}
 		return rpta;
 	}
+	
+	@Override
+	public void insert2(Invitacion invitacion) {
+		
+			pR.save(invitacion);
+		
+	}
 
 	@Override
 	public List<Invitacion> list() {
@@ -29,5 +38,16 @@ public class InvitacionServiceImpl implements IInvitacionService {
 		return pR.findAll();
 	}
 
+	@Override
+	@Transactional
+	public void delete(int idinv) {
+		pR.deleteById(idinv);
+	}
+	
+	@Override
+	public Optional<Invitacion> listarId(int idinv) {
+		// TODO Auto-generated method stub
+		return pR.findById(idinv);
+	}
 
 }

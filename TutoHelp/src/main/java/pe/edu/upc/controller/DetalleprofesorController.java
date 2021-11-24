@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Detalleprofesor;
 import pe.edu.upc.serviceinterface.IDetalleprofesorService;
+import pe.edu.upc.serviceinterface.IProfesorService;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
@@ -27,27 +28,34 @@ public class DetalleprofesorController {
 	@Autowired
 	private IUsuarioService uService;
 	@Autowired
+	private IProfesorService pService;
+	@Autowired
 	private IDetalleprofesorService sService;
 
 	@GetMapping("/new")
 	public String newDetalleprofesor(Model model) {
 		model.addAttribute("detalleprofesor", new Detalleprofesor());
 		model.addAttribute("listaUsuarios", uService.list());
+		model.addAttribute("listaProfesores", pService.list());
 		return "detalleprofesor/detalleprofesor";
 	}
 
 	@PostMapping("/save")
 	public String saveDetalleprofesor(@Valid Detalleprofesor detalleprofesor, BindingResult result, Model model, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaUsuarios", uService.list());
+			model.addAttribute("listaProfesores", pService.list());
 			return "/detalleprofesor/detalleprofesor";
 		} else {
+			model.addAttribute("listaUsuarios", uService.list());
+			model.addAttribute("listaProfesores", pService.list());
 			sService.insert(detalleprofesor);
 			model.addAttribute("mensaje", "Se guardó correctamente");
 			status.setComplete();
 		}
 		model.addAttribute("listaDetalleprofesores", sService.list());
 
-		return "/detalleprofesor/detalleprofesor";
+		return "/detalleprofesor/listDetalleprofesor";
 
 	}
 
@@ -82,10 +90,11 @@ public class DetalleprofesorController {
 	public String detailsPrf(@PathVariable(value = "id") int id, Model model) {
 		try {
 			model.addAttribute("listaUsuarios", uService.list());
+			model.addAttribute("listaProfesores", pService.list());
 			Optional<Detalleprofesor> detalleprofesor = sService.listarId(id);
 			if (!detalleprofesor.isPresent()) {
-				model.addAttribute("info", "Usuario no existe");
-				return "redirect:/soportes/list";
+				model.addAttribute("info", "DetalleProfesor no existe");
+				return "redirect:/detalleprofesores/list";
 			} else {
 				
 				model.addAttribute("detalleprofesor", detalleprofesor.get());
