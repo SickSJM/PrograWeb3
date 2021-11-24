@@ -27,18 +27,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	@Query(value= "insert into tipodeusuarios (descripcion, user_id) VALUES (:descripcion, :user_id)", nativeQuery = true)
 	public void insRol(@Param("descripcion") String authority, @Param("user_id") Long user_id);
 	
-	@Query(value = "SELECT c.username,sum(ode.quantity) "
-			+ "from Prueba ode on ode.prueba_id= pr.id "
-			+ "join Usuario c on c.id = pr.id_usuario "
-			+ "group by c.username "
-			+ "ORDER BY sum(ode.quantity) "
-			+ "DESC limit 1", nativeQuery = true)
+	@Query(value = "select u.username, count(p.usuarioid) "
+			+ "from prueba p "
+			+ "join usuario u on u.usuarioid=p.usuarioid "
+			+ "group by u.username "
+			+ "order by count(p.usuarioid) "
+			+ "desc limit 1", nativeQuery = true)
 	public List<String[]> userTopQuantityPrueba();
-	/*
-	@Query( value="SELECT pr.name,sum(ode.quantity) "
-			+ "from Orders o join order_details ode on  ode.order_id = o.id "
-			+ "join products pr on ode.product_id= pr.id "
-			+ "group by pr.name",
-			nativeQuery = true )
-	public List<String[]> prodXord();*/
 }

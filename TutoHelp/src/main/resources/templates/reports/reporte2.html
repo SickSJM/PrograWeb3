@@ -22,28 +22,28 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
-			<div class="creportes d-flex justify-content-around">
-				<div class="cproyecto ">
-					<h3 class="tproyecto ">Reporte 1</h3>
-					<p class="dproyecto ">Curso con mayor cantidad de usuarios registrados</p>
-					<a class="lnikp " th:href="@{/detallecursos/reporte1}">Ver Reporte</a>
-
-				</div>
-				
-				<div class="cproyecto ">
-					<h3 class="tproyecto ">Reporte 2</h3>
-					<p class="dproyecto ">Usuario con cantidad de pruebas compartidas</p>
-					<a class="lnikp " th:href="@{/usuarios/reporte2}">Ver Reporte</a>
-
-				</div>
-			</div>
-		</div>
-
+					<div class="content container">
+						<div class="cinforeport">
+							<h3 class="title-content">Usuario</h3>
+							<p class="inforeport">Usuario con mayor prueba compartida</p>
+						</div>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">Usuario</th>
+									<th scope="col" class="text-center">Cantidad de Pruebas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rep : ${listaUsuarios}">
+									<td class="text-center" th:text="${rep[0]}"></td>
+									<td class="text-center" th:text="${rep[1]}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 	</div>
 
-	<div th:replace="fragments/sidebar :: sidebar" id="panel"
-		class="activepanel"></div>
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
