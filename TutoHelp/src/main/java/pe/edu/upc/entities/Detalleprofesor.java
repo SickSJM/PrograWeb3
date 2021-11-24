@@ -35,13 +35,13 @@ public class Detalleprofesor implements Serializable{
 	@Min(value = 0 , message = "La calificación minima es 0")
     @Max(value = 10 , message = "La calificación máxima es 10")
 	@Column(name="calificacion",nullable = false,length = 2)
-	private int calificacion;
+	private String calificacion;
 	
-	public int getCalificacion() {
+	public String getCalificacion() {
 		return calificacion;
 	}
 
-	public void setCalificacion(int calificacion) {
+	public void setCalificacion(String calificacion) {
 		this.calificacion = calificacion;
 	}
 	

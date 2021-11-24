@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class UsuarioController {
 	@Autowired
 	private IUsuarioService pService;
 
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/nuevo")
 	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());

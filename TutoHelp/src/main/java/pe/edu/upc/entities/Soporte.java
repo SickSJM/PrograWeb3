@@ -23,8 +23,8 @@ public class Soporte {
 	@JoinColumn(name = "UsuarioID", nullable = false)
 	private Usuario usuario;
 	
-	@Length (min = 1, max = 20, message = "La longitud del mensaje es de 1 a 200 letras")
-	@Column(name = "ReporteMensaje", nullable = false, length = 20)
+	@Length (min = 1, max = 200, message = "La longitud del mensaje es de 1 a 200 letras")
+	@Column(name = "ReporteMensaje", nullable = false, length = 200)
 	private String ReporteMensaje;
 
 	public Soporte(int soporteID, Usuario usuario,String reporteMensaje) {
