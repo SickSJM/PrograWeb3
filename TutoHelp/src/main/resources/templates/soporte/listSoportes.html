@@ -41,7 +41,7 @@
 				<tbody>
 					<tr th:each="p: ${listaSoportes}">
 						<td class="text-center" th:text="${p.SoporteID}"></td>
-						<td class="text-center" th:text="${p.usuario.NombreUsuario}"></td>
+						<td class="text-center" th:text="${p.usuario.username}"></td>
 						<td class="text-center" th:text="${p.ReporteMensaje}"></td>
 						<td class="text-center">
 						<a th:href="@{/soportes/delete?id=}+${p.SoporteID}" ><i class="fa fa-trash"

@@ -41,8 +41,8 @@
 								class="form-control" th:field="*{usuario.UsuarioID}">
 								<option th:each="c: ${listaUsuarios}"
 									th:value="${c.UsuarioID}"
-									th:text="${c.NombreUsuario}"
-									th:selected="(${c.UsuarioID} == *{usuario.NombreUsuario})"></option>
+									th:text="${c.username}"
+									th:selected="(${c.UsuarioID} == *{usuario.username})"></option>
 							</select>
 						</div>
 

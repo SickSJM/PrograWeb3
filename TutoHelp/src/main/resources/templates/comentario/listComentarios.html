@@ -42,7 +42,7 @@
 				<tbody>
 					<tr th:each="p: ${listaComentarios}">
 						<td class="text-center" th:text="${p.id}"></td>
-						<td class="text-center" th:text="${p.user.NombreUsuario}"></td>
+						<td class="text-center" th:text="${p.user.username}"></td>
 						<td class="text-center" th:text="${p.consulta.TextoConsulta}"></td>
 						<td class="text-center" th:text="${p.comentarioconsul}"></td>
 						<td class="text-center">
