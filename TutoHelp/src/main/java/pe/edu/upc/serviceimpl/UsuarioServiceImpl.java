@@ -48,4 +48,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		// TODO Auto-generated method stub
 		return pR.findById(iduser);
 	}
+	@Override
+	public List<String[]> userTopQuantityPrueba() {
+		// TODO Auto-generated method stub
+		return pR.userTopQuantityPrueba();
+	}
 }

@@ -112,4 +112,15 @@ public class UsuarioController {
 		model.addAttribute("usuario", new Usuario());
 		return "redirect:/usuarios/list";
 	}
+	@RequestMapping("/reporte1")
+	public String userTopQuantityPrueba(Map<String, Object> model) {
+		model.put("listaUsuarios", pService.userTopQuantityPrueba());
+		return "reports/userTopQuantity";
+	}
+	@GetMapping("/reportes")
+	public String listReports(Model model) {
+
+		return "/reports/reports";
+	}
+
 }

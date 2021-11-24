@@ -11,4 +11,5 @@ public interface IUsuarioService {
 	List<Usuario> list();
 	Optional<Usuario> listarId(int iduser);
 	public void delete(int iduser);
+	public List<String[]> userTopQuantityPrueba();
 }
