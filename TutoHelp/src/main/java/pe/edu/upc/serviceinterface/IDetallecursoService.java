@@ -14,5 +14,5 @@ public interface IDetallecursoService {
 
 	List<Tipodeusuario> findByNameLikeIgnoreCase(String name);*/
 	List<Detallecurso> list();
-
+	public List<String[]> Reporte1();
 }

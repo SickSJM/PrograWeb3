@@ -24,18 +24,18 @@
 
 					<div class="content container">
 						<div class="cinforeport">
-							<h3 class="title-content">Usuarios</h3>
-							<p class="inforeport">Lista de Usuarios con mas cantidad de Pruebas compartidas</p>
+							<h3 class="title-content">Cursos</h3>
+							<p class="inforeport">Curso con mayor cantidad de usuarios registrados</p>
 						</div>
 						<table class="table">
 							<thead class="thead-light">
 								<tr>
-									<th scope="col" class="text-center">Usuarios</th>
-									<th scope="col" class="text-center">Cantidad en Pruebas</th>
+									<th scope="col" class="text-center">Curso</th>
+									<th scope="col" class="text-center">Cantidad de usuarios</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="rep : ${listaUsuarios}">
+								<tr th:each="rep : ${listaDetallecursos}">
 									<td class="text-center" th:text="${rep[0]}"></td>
 									<td class="text-center" th:text="${rep[1]}"></td>
 								</tr>

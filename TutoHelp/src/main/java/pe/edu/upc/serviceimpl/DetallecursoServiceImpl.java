@@ -41,4 +41,9 @@ public class DetallecursoServiceImpl implements IDetallecursoService {
 		return dR.findById(iddcurso);
 	}
 
+	@Override
+	public List<String[]> Reporte1() {
+		// TODO Auto-generated method stub
+		return dR.Reporte1();
+	}
 }

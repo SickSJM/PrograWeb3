@@ -106,5 +106,10 @@ public class DetallecursoController {
 		}
 		return "/detallecurso/update";
 	}
-
+	
+	@RequestMapping("/reporte1")
+	public String categoryTopFrquency(Map<String, Object> model) {
+		model.put("listaDetallecursos", dService.Reporte1());
+		return "reports/reporte1";
+	}
 }
